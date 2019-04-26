@@ -14,8 +14,10 @@
         <mark key="]" line="12" column="0" />
         <mark key="." line="12" column="0" />
       </file>
-      <file name="$USER_HOME$/Documents/KTH/kod/JAVA/IDETest/src/Test3.java" timestamp="1541590584939">
-        <mark key="[" line="0" column="20" />
+      <file name="$USER_HOME$/Documents/KTH/Objrktorieterad design/Seminarium 3/ProcesSale_app/src/se/kth/iv1350/processSale/integration/CustomerID.java" timestamp="1556274185318">
+        <mark key="[" line="2" column="0" />
+        <mark key="]" line="2" column="0" />
+        <mark key="." line="2" column="0" />
       </file>
       <file name="$USER_HOME$/Documents/KTH/kod/JAVA/JSort/src/Main.java" timestamp="1542639416467">
         <mark key="[" line="30" column="53" />
@@ -23,18 +25,15 @@
         <mark key="." line="30" column="40" />
         <mark key="^" line="30" column="40" />
       </file>
-      <file name="$USER_HOME$/Documents/Punkter/VPolyline1.java" timestamp="1544701026677">
-        <mark key="[" line="2" column="24" />
-      </file>
-      <file name="$USER_HOME$/Documents/KTH/Objrktorieterad design/Seminarium 3/ProcesSale_app/src/se/kth/iv1350/processSale/model/SaleDTO.java" timestamp="1556272535843">
-        <mark key="[" line="7" column="0" />
+      <file name="$USER_HOME$/Documents/KTH/Objrktorieterad design/Seminarium 3/ProcesSale_app/src/se/kth/iv1350/processSale/model/SaleDTO.java" timestamp="1556275822553">
+        <mark key="[" line="12" column="29" />
         <mark key="]" line="7" column="0" />
         <mark key="." line="7" column="0" />
       </file>
-      <file name="$USER_HOME$/Documents/KTH/kod/JAVA/temperatur/src/jTools/JArrayTools.java" timestamp="1542198675558">
-        <mark key="[" line="12" column="21" />
-        <mark key="]" line="12" column="22" />
-        <mark key="." line="12" column="22" />
+      <file name="$USER_HOME$/Documents/KTH/Objrktorieterad design/Seminarium 3/ProcesSale_app/src/se/kth/iv1350/processSale/integration/LogDTO.java" timestamp="1556274180324">
+        <mark key="[" line="2" column="0" />
+        <mark key="]" line="2" column="0" />
+        <mark key="." line="2" column="0" />
       </file>
       <file name="$USER_HOME$/Documents/KTH/Objrktorieterad design/Seminarium 3/ProcesSale_app/src/Main.java" timestamp="1556272795738">
         <mark key="[" line="16" column="0" />
@@ -47,14 +46,16 @@
         <mark key="." line="19" column="29" />
         <mark key="^" line="19" column="29" />
       </file>
-      <file name="$USER_HOME$/Documents/KTH/Objrktorieterad design/Seminarium 3/ProcesSale_app/src/se/kth/iv1350/processSale/controller/PosController.java" timestamp="1556271928311">
-        <mark key="[" line="37" column="0" />
-        <mark key="]" line="37" column="0" />
-        <mark key="." line="37" column="0" />
-        <mark key="^" line="36" column="0" />
+      <file name="$USER_HOME$/Documents/KTH/Objrktorieterad design/Seminarium 3/ProcesSale_app/src/se/kth/iv1350/processSale/controller/PosController.java" timestamp="1556275340817">
+        <mark key="[" line="16" column="0" />
+        <mark key="]" line="16" column="0" />
+        <mark key="^" line="16" column="14" />
+        <mark key="." line="16" column="0" />
       </file>
-      <file name="$USER_HOME$/Documents/KTH/Objrktorieterad design/Seminarium 3/ProcesSale_app/src/se/kth/iv1350/processSale/integration/DiscountDTO.java" timestamp="1556193804267">
-        <mark key="[" line="2" column="26" />
+      <file name="/Dummy.txt" timestamp="1556275983375">
+        <mark key="[" line="0" column="0" />
+        <mark key="]" line="0" column="0" />
+        <mark key="." line="0" column="0" />
       </file>
       <file name="$USER_HOME$/Documents/KTH/kod/JAVA/test2.java" timestamp="1541586575506">
         <mark key="[" line="3" column="27" />
@@ -62,10 +63,11 @@
         <mark key="^" line="2" column="27" />
         <mark key="." line="3" column="29" />
       </file>
-      <file name="$USER_HOME$/Documents/Punkter/NPolyline.java" timestamp="1544703627248">
-        <mark key="[" line="52" column="0" />
-        <mark key="]" line="52" column="0" />
-        <mark key="." line="52" column="0" />
+      <file name="$USER_HOME$/Documents/KTH/Objrktorieterad design/Seminarium 3/ProcesSale_app/src/se/kth/iv1350/processSale/model/VATRate.java" timestamp="1556274319010">
+        <mark key="[" line="4" column="0" />
+        <mark key="]" line="4" column="0" />
+        <mark key="^" line="4" column="0" />
+        <mark key="." line="4" column="0" />
       </file>
       <file name="$USER_HOME$/Documents/KTH/Objrktorieterad design/Seminarium 3/ProcesSale_app/src/se/kth/iv1350/processSale/integration/ItemRegistry.java" timestamp="1556270221155">
         <mark key="[" line="12" column="0" />
@@ -73,26 +75,21 @@
         <mark key="." line="14" column="65" />
         <mark key="^" line="14" column="65" />
       </file>
-      <file name="$USER_HOME$/Documents/KTH/kod/JAVA/temperatur/src/jarrayTools.java" timestamp="1542099131261">
-        <mark key="[" line="0" column="0" />
-        <mark key="]" line="0" column="14" />
-        <mark key="." line="0" column="14" />
-      </file>
-      <file name="$USER_HOME$/Documents/KTH/Objrktorieterad design/Seminarium 3/ProcesSale_app/src/se/kth/iv1350/processSale/model/Sale.java" timestamp="1556272742333">
-        <mark key="[" line="53" column="15" />
-        <mark key="]" line="53" column="15" />
-        <mark key="." line="53" column="26" />
+      <file name="$USER_HOME$/Documents/KTH/Objrktorieterad design/Seminarium 3/ProcesSale_app/src/se/kth/iv1350/processSale/model/Sale.java" timestamp="1556275872135">
+        <mark key="[" line="58" column="16" />
+        <mark key="]" line="47" column="0" />
+        <mark key="." line="47" column="0" />
         <mark key="^" line="49" column="26" />
       </file>
-      <file name="$USER_HOME$/Documents/KTH/Objrktorieterad design/Seminarium 3/ProcesSale_app/src/se/kth/iv1350/processSale/model/Amount.java" timestamp="1556194849396">
-        <mark key="[" line="4" column="16" />
+      <file name="$USER_HOME$/Documents/KTH/Objrktorieterad design/Seminarium 3/ProcesSale_app/src/se/kth/iv1350/processSale/model/Amount.java" timestamp="1556274326592">
+        <mark key="[" line="4" column="0" />
         <mark key="]" line="4" column="16" />
         <mark key="." line="4" column="16" />
       </file>
-      <file name="$USER_HOME$/Documents/KTH/Objrktorieterad design/Seminarium 3/ProcesSale_app/src/se/kth/iv1350/processSale/view/View.java" timestamp="1556272003415">
-        <mark key="[" line="23" column="0" />
-        <mark key="]" line="23" column="0" />
-        <mark key="." line="23" column="0" />
+      <file name="$USER_HOME$/Documents/KTH/Objrktorieterad design/Seminarium 3/ProcesSale_app/src/se/kth/iv1350/processSale/view/View.java" timestamp="1556276302022">
+        <mark key="[" line="11" column="0" />
+        <mark key="]" line="11" column="0" />
+        <mark key="." line="11" column="0" />
       </file>
       <file name="$USER_HOME$/Documents/Punkter/VPolyline.java" timestamp="1544703124934">
         <mark key="[" line="140" column="7" />
@@ -100,35 +97,17 @@
         <mark key="." line="137" column="5" />
         <mark key="^" line="137" column="5" />
       </file>
-      <file name="$USER_HOME$/Documents/KTH/kod/JAVA/MyBigInt/src/MyBigInt.java" timestamp="1543493301923">
-        <mark key="[" line="0" column="0" />
-        <mark key="]" line="0" column="0" />
-        <mark key="." line="0" column="0" />
-      </file>
-      <file name="$USER_HOME$/Documents/Punkter/Polyline.java" timestamp="1544700480886">
-        <mark key="[" line="1" column="0" />
-        <mark key="]" line="1" column="0" />
-        <mark key="." line="1" column="0" />
-      </file>
-      <file name="$USER_HOME$/Documents/KTH/Objrktorieterad design/Seminarium 3/ProcesSale_app/src/se/kth/iv1350/processSale/model/Logger.java" timestamp="1556193605871">
-        <mark key="[" line="6" column="7" />
-      </file>
-      <file name="$USER_HOME$/Documents/KTH/Objrktorieterad design/Seminarium 3/ProcesSale_app/src/se/kth/iv1350/processSale/model/Search.java" timestamp="1556193687570" />
-      <file name="$USER_HOME$/Documents/Punkter/Main.java" timestamp="1544706954185">
-        <mark key="[" line="105" column="15" />
-      </file>
       <file name="$USER_HOME$/Documents/KTH/Objrktorieterad design/Seminarium 3/ProcesSale_app/se/kth/iv1350/processSale/controller/PosController.java" timestamp="1556193223022">
         <mark key="[" line="17" column="20" />
         <mark key="]" line="17" column="19" />
         <mark key="^" line="17" column="19" />
         <mark key="." line="17" column="19" />
       </file>
-      <file name="$USER_HOME$/Documents/KTH/Objrktorieterad design/Seminarium 3/ProcesSale_app/src/se/kth/iv1350/processSale/integration/DiscountRegistry.java" timestamp="1556193770244" />
-      <file name="$USER_HOME$/Documents/KTH/Objrktorieterad design/Seminarium 3/ProcesSale_app/src/se/kth/iv1350/processSale/startup/ProcessSale.java" timestamp="1556273431304">
-        <mark key="[" line="6" column="17" />
-        <mark key="]" line="6" column="23" />
-        <mark key="^" line="6" column="23" />
-        <mark key="." line="6" column="23" />
+      <file name="$USER_HOME$/Documents/KTH/Objrktorieterad design/Seminarium 3/ProcesSale_app/src/se/kth/iv1350/processSale/startup/ProcessSale.java" timestamp="1556275270094">
+        <mark key="[" line="19" column="11" />
+        <mark key="]" line="16" column="61" />
+        <mark key="^" line="16" column="61" />
+        <mark key="." line="16" column="61" />
       </file>
       <file name="$USER_HOME$/Documents/Punkter/RandomLines.java" timestamp="1544702552992">
         <mark key="[" line="83" column="4" />
@@ -136,18 +115,13 @@
         <mark key="." line="82" column="16" />
         <mark key="^" line="82" column="16" />
       </file>
-      <file name="/fragment.java" timestamp="1556273455090">
+      <file name="/fragment.java" timestamp="1556274770885">
         <mark key="[" line="0" column="0" />
       </file>
       <file name="$USER_HOME$/Documents/KTH/Objrktorieterad design/Seminarium 3/ProcesSale_app/src/se/kth/iv1350/processSale/integration/ItemDTO.java" timestamp="1556269681659">
         <mark key="[" line="36" column="0" />
         <mark key="]" line="36" column="0" />
         <mark key="." line="36" column="0" />
-      </file>
-      <file name="$USER_HOME$/Documents/Punkter/Point.java" timestamp="1544699266904">
-        <mark key="[" line="65" column="0" />
-        <mark key="]" line="65" column="0" />
-        <mark key="." line="65" column="0" />
       </file>
     </filemarks>
     <jumps>
@@ -184,43 +158,43 @@
     </jumps>
     <registers>
       <register name="&quot;" type="2">
-        <text encoding="base64">Cg==</text>
+        <text encoding="base64">ICAgZGRkIAo=</text>
       </register>
       <register name="-" type="4">
-        <text>sum</text>
+        <text>private SaleStateDTO saleState;</text>
       </register>
       <register name="/" type="4">
         <text>tal</text>
       </register>
       <register name="0" type="2">
-        <text encoding="base64">ICAgIHByaXZhdGUgTGlzdDxJdGVtRFRPPiBpdGVtczsK</text>
+        <text encoding="base64">ICAgICAgICBTeXN0ZW0ub3V0LnByaW50bG4oc2FsZS5sYXN0QWRkZWRJdGVtKCkuZ2V0TmFtZSgpKTsK</text>
       </register>
       <register name="1" type="2">
-        <text encoding="base64">Cg==</text>
+        <text encoding="base64">ICAgZGRkIAo=</text>
       </register>
       <register name="2" type="2">
         <text encoding="base64">Cg==</text>
       </register>
       <register name="3" type="2">
-        <text encoding="base64">Cg==</text>
+        <text encoding="base64">aW1wb3J0IHNlLmt0aC5pdjEzNTAucHJvY2Vzc1NhbGUuY29udHJvbGxlci5Qb3NDb250cm9sbGVyOwo=</text>
       </register>
       <register name="4" type="2">
-        <text encoding="base64">CQlWaWV3IHZpZXc7Cg==</text>
-      </register>
-      <register name="5" type="2">
         <text encoding="base64">Cg==</text>
       </register>
+      <register name="5" type="2">
+        <text encoding="base64">ICAgIH0K</text>
+      </register>
       <register name="6" type="2">
-        <text encoding="base64">CX0K</text>
+        <text encoding="base64">ICAgIHB1YmxpYyBTYWxlQ29udHJvbGxlcigpewo=</text>
       </register>
       <register name="7" type="2">
-        <text encoding="base64">CXByaXZhdGUgQW1vdW50IHJ1bm5pbmdUb3RhbCgpewo=</text>
+        <text encoding="base64">ICAgIEBPdmVycmlkZQo=</text>
       </register>
       <register name="8" type="2">
-        <text encoding="base64">CSAqLwo=</text>
+        <text encoding="base64">Cg==</text>
       </register>
       <register name="9" type="2">
-        <text encoding="base64">CSAqIFJldHVybnMgc3VtIGFzIGFuIEFtb3VudAo=</text>
+        <text encoding="base64">Cg==</text>
       </register>
       <register name=":" type="4">
         <text>%s/tal/bigInt/g</text>
