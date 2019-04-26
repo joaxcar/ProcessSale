@@ -1,26 +1,43 @@
 package se.kth.iv1350.processSale.view;
 
-import se.kth.iv1350.processSale.controller.PosController;
+import se.kth.iv1350.processSale.controller.SaleController;
 import se.kth.iv1350.processSale.model.SaleDTO;
 import se.kth.iv1350.processSale.model.SaleStateDTO;
 
+/**
+ * This application does not contain a view. This Class serves as a placeholder for a future view.
+ */
 public class View {
 
-    private PosController contr;
+    private SaleController contr;
     private SaleStateDTO saleState;
     private SaleDTO sale;
 
-    public View(PosController contr) {
+    /**
+     * Create new instance, set given <code>SaleController</code> as controller
+     *
+     * @param contr <code>SaleController</code> to use as controller
+     */
+    public View(SaleController contr) {
         this.contr = contr;
     }
 
+    /**
+     * Run a simulated testrun of the application, giving output to the console
+     */
     public void testRun(){
         sale = contr.initializeSale();
+
         System.out.println(sale.getRunningTotal());
+
         contr.addItemsToSale(1,"0001");
         contr.addItemsToSale(2,"0004");
         contr.addItemsToSale(1,"0002");
         contr.addItemsToSale(4,"0006");
+
         System.out.println(sale.getRunningTotal());
+        System.out.println(sale.lastAddedItem().getName());
+        System.out.println(sale.lastAddedItemQuantity());
+        System.out.println(sale.getItemCount());
     }
 }

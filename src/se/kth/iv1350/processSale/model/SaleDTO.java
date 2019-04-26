@@ -11,4 +11,6 @@ public interface SaleDTO {
     int lastAddedItemQuantity();
 
     Amount getRunningTotal();
+
+    int getItemCount();
 }

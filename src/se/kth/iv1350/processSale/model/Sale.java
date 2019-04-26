@@ -53,4 +53,9 @@ public class Sale implements SaleDTO{
         }
         return runningTotal;
     }
+
+	@Override
+	public int getItemCount() {
+		return items.size();
+	}
 }
