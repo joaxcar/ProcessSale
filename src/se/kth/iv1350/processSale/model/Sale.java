@@ -8,13 +8,14 @@ import java.util.List;
 import java.util.Map;
 
 public class Sale implements SaleDTO{
-    private List<ItemDTO> items;
+    private List<GroupedItem> items;
+    private ItemDTO lastAddedItem;
 
     /**
      * Creates a new instance with an empty item array
      */
     public Sale () {
-        items = new ArrayList<ItemDTO>();
+        items = new ArrayList<GroupedItem>();
     }
 
     /**
@@ -23,55 +24,82 @@ public class Sale implements SaleDTO{
      * @param newItem The <code>ItemDTO</code> to add to <code>Sale</code> object
      */
     public void addItem(ItemDTO newItem) {
-        items.add(newItem);
+        lastAddedItem = newItem;
+        GroupedItem newGroupedItem = new GroupedItem(lastAddedItem);
+
+        int itemIndex = itemInList(lastAddedItem);
+        int notInList = -1;
+
+        if (itemIndex == notInList) {
+            items.add(newGroupedItem);
+        }
+        else if (itemIndex > notInList){
+            GroupedItem oldItem = items.get(itemIndex);
+            oldItem.incrementQuantity();
+        }
     }
 
-
-    @Override
-    public ItemDTO lastAddedItem() {
-        int lastIndex = items.size() - 1;
-        return items.get(lastIndex);
-    }
-
-    @Override
-    public int lastAddedItemQuantity() {
-        int lastIndex = items.size() - 1;
-        ItemDTO lastAddedItem = lastAddedItem();
-        int quantity = 0;
-
-        if (lastAddedItem != null){
-            for (int i = lastIndex; items.get(i).equals(lastAddedItem); i--){
-                quantity += 1;
+    private int itemInList(ItemDTO item){
+        int notInList = -1;
+        int itemIndex = notInList;
+        for (GroupedItem groupItem : items){
+            if (groupItem.equalItem(item)){
+                itemIndex = items.indexOf(groupItem);
+                break;
             }
         }
-        return quantity;
+        return itemIndex;
+    }
+
+
+    @Override
+    public GroupedItem getLastAddedItem() {
+        int itemIndex = itemInList(lastAddedItem);
+        GroupedItem lastAddedGroupedItem = items.get(itemIndex);
+        return lastAddedGroupedItem;
     }
 
     @Override
     public Amount getRunningTotal() {
         Amount runningTotal = new Amount(0);
-        for (ItemDTO item : items){
-            runningTotal.addAmount(item.getPrice());
+        for (GroupedItem item : items){
+            runningTotal.addAmount(item.getTotalPrice());
         }
         return runningTotal;
     }
 
-	@Override
+    @Override
+    public Amount getVAT() {
+        Amount vatSum = new Amount(0);
+        for (GroupedItem item : items){
+            Amount price = item.getPrice();
+            int quantity = item.getQuantity();
+            double vatRate = item.getVATRate().getRate();
+            vatSum.addAmount(new Amount(price.getAmount()*quantity*(vatRate)));
+        }
+        return vatSum;
+    }
+
+    @Override
+    public Amount getRunningTotalIncVAT() {
+        Amount totalIncVAT = new Amount(0);
+        totalIncVAT.addAmount(getRunningTotal());
+        totalIncVAT.addAmount(getVAT());
+        return totalIncVAT;
+    }
+
+    @Override
 	public int getItemCount() {
-		return items.size();
+        int count = 0;
+        for (GroupedItem item : items){
+            count += item.getQuantity();
+        }
+		return count;
 	}
 
     @Override
-    public Map<String, Integer> getItemList() {
-        Map<String, Integer> itemCounts = new HashMap<String, Integer>();
-
-        for (ItemDTO item : items) {
-            if (itemCounts.containsKey(item.getName())) {
-                itemCounts.put(item.getName(), itemCounts.get(item.getName()) + 1);
-            } else {
-                itemCounts.put(item.getName(), 1);
-            }
-        }
-        return itemCounts;
+    public List<GroupedItem> getItemList() {
+        List<GroupedItem> itemList = new ArrayList<GroupedItem>(items);
+        return itemList;
     }
 }

@@ -7,13 +7,15 @@ import java.util.Map;
 
 public interface SaleDTO {
 
-    ItemDTO lastAddedItem();
-
-    int lastAddedItemQuantity();
+    GroupedItem getLastAddedItem();
 
     Amount getRunningTotal();
 
+    Amount getVAT();
+
+    Amount getRunningTotalIncVAT();
+
     int getItemCount();
 
-    Map<String, Integer> getItemList();
+    List<GroupedItem> getItemList();
 }

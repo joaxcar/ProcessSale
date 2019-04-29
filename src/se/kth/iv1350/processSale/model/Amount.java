@@ -2,17 +2,21 @@ package se.kth.iv1350.processSale.model;
 
 public class Amount {
 
-    private int amount;
+    private double amount;
 
-    public Amount(int amount){
+    public Amount(double amount){
         this.amount=amount;
     }
 
-    public String toString(){
-        return Integer.toString(amount);
+    public Amount(Amount amount){
+        this.amount=amount.getAmount();
     }
 
-    public int getAmount(){
+    public String toString(){
+        return Double.toString(amount);
+    }
+
+    public double getAmount(){
         return amount;
     }
 
@@ -20,4 +24,20 @@ public class Amount {
         amount = amount + newAmount.getAmount();
     }
 
+    public void subtractAmount(Amount newAmount){
+        amount = amount - newAmount.getAmount();
+    }
+
+    public void multiplyAmount(int multiplier){
+        amount = amount * multiplier;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Amount amount1 = (Amount) o;
+        return Double.compare(amount1.amount, amount) == 0;
+    }
 }

@@ -2,36 +2,15 @@ package se.kth.iv1350.processSale.integration;
 
 import se.kth.iv1350.processSale.model.Amount;
 
-public class ItemDTO {
+public interface ItemDTO {
 
-    private String name;
+    public String getName();
 
-    private Amount price;
+    public Amount getPrice();
 
-    private String itemID;
+    public VATRate getVATRate();
 
-    private String type;
+    public String getItemID();
 
-    public ItemDTO(String name, Amount price, String itemID, String type){
-        this.name = name;
-        this.price = price;
-        this.itemID = itemID;
-        this.type = type;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Amount getPrice(){
-        return price;
-    }
-
-    public String getItemID() {
-        return itemID;
-    }
-
-    public String getType() {
-        return type;
-    }
+    public String getType();
 }

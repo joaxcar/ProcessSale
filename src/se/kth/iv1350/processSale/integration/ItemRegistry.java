@@ -1,6 +1,7 @@
 package se.kth.iv1350.processSale.integration;
 
 import se.kth.iv1350.processSale.model.Amount;
+import se.kth.iv1350.processSale.model.SaleDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,12 +23,12 @@ public class ItemRegistry {
      * Adds items to availableItems list
      */
     private void addItems() {
-        ItemDTO item1 = new ItemDTO("GameBoy", new Amount(2000), "0001", "Console");
-        ItemDTO item2 = new ItemDTO("Tetris", new Amount(340), "0002", "Game");
-        ItemDTO item3 = new ItemDTO("Super Mario 2", new Amount(280), "0003", "Game");
-        ItemDTO item4 = new ItemDTO("Mario figure", new Amount(95), "0004", "Collectable");
-        ItemDTO item5 = new ItemDTO("Zelda", new Amount(300), "0005", "Game");
-        ItemDTO item6 = new ItemDTO("AAA batteries", new Amount(19), "0006", "Misc");
+        ItemDTO item1 = new Item("GameBoy", new Amount(2000), "0001", "Console", new VATRate(25));
+        ItemDTO item2 = new Item("Tetris", new Amount(340), "0002", "Game",new VATRate(12));
+        ItemDTO item3 = new Item("Super Mario 2", new Amount(280), "0003", "Game",new VATRate(25));
+        ItemDTO item4 = new Item("Mario figure", new Amount(95), "0004", "Collectable",new VATRate(12));
+        ItemDTO item5 = new Item("Zelda", new Amount(300), "0005", "Game",new VATRate(12));
+        ItemDTO item6 = new Item("AAA batteries", new Amount(19), "0006", "Misc",new VATRate(6));
 
         availableItems.add(item1);
         availableItems.add(item2);
@@ -52,7 +53,7 @@ public class ItemRegistry {
         return null;
     }
 
-    public void updateInventory(ItemDTO item, int quantity) {
+    public void updateInventory(List<ItemDTO> items) {
 
     }
 
