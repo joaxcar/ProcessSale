@@ -19,6 +19,9 @@
         <mark key="]" line="2" column="0" />
         <mark key="." line="2" column="0" />
       </file>
+      <file name="$USER_HOME$/Documents/KTH/Objrktorieterad design/Seminarium 3/ProcesSale_app/src/se/kth/iv1350/processSale/integration/Log.java" timestamp="1556537815296">
+        <mark key="[" line="10" column="31" />
+      </file>
       <file name="$USER_HOME$/Documents/KTH/kod/JAVA/JSort/src/Main.java" timestamp="1542639416467">
         <mark key="[" line="30" column="53" />
         <mark key="]" line="30" column="40" />
@@ -47,6 +50,12 @@
         <mark key="." line="19" column="29" />
         <mark key="^" line="19" column="29" />
       </file>
+      <file name="$USER_HOME$/Documents/KTH/Objrktorieterad design/Seminarium 3/ProcesSale_app/src/se/kth/iv1350/processSale/controller/SaleController.java" timestamp="1556538118585">
+        <mark key="[" line="19" column="7" />
+        <mark key="]" line="19" column="7" />
+        <mark key="." line="19" column="7" />
+        <mark key="^" line="18" column="39" />
+      </file>
       <file name="$USER_HOME$/Documents/KTH/Objrktorieterad design/Seminarium 3/ProcesSale_app/src/se/kth/iv1350/processSale/controller/PosController.java" timestamp="1556275340817">
         <mark key="[" line="16" column="0" />
         <mark key="]" line="16" column="0" />
@@ -58,7 +67,7 @@
         <mark key="]" line="69" column="0" />
         <mark key="." line="69" column="0" />
       </file>
-      <file name="/Dummy.txt" timestamp="1556531170358">
+      <file name="/Dummy.txt" timestamp="1556537836308">
         <mark key="[" line="0" column="0" />
         <mark key="]" line="0" column="0" />
         <mark key="." line="0" column="0" />
@@ -123,11 +132,16 @@
         <mark key="^" line="17" column="19" />
         <mark key="." line="17" column="19" />
       </file>
-      <file name="$USER_HOME$/Documents/KTH/Objrktorieterad design/Seminarium 3/ProcesSale_app/src/se/kth/iv1350/processSale/startup/ProcessSale.java" timestamp="1556275270094">
-        <mark key="[" line="19" column="11" />
-        <mark key="]" line="16" column="61" />
-        <mark key="^" line="16" column="61" />
-        <mark key="." line="16" column="61" />
+      <file name="$USER_HOME$/Documents/KTH/Objrktorieterad design/Seminarium 3/ProcesSale_app/src/se/kth/iv1350/processSale/startup/ProcessSale.java" timestamp="1556538153385">
+        <mark key="[" line="26" column="24" />
+        <mark key="]" line="23" column="18" />
+        <mark key="." line="23" column="0" />
+      </file>
+      <file name="$USER_HOME$/Documents/KTH/Objrktorieterad design/Seminarium 3/ProcesSale_app/src/se/kth/iv1350/processSale/model/Payment.java" timestamp="1556538383023">
+        <mark key="[" line="12" column="38" />
+        <mark key="]" line="20" column="35" />
+        <mark key="^" line="20" column="35" />
+        <mark key="." line="20" column="35" />
       </file>
       <file name="$USER_HOME$/Documents/Punkter/RandomLines.java" timestamp="1544702552992">
         <mark key="[" line="83" column="4" />
@@ -178,8 +192,8 @@
       <jump line="41" column="24" filename="$USER_HOME$/Documents/KTH/kod/JAVA/MyBigInt/src/Main.java" />
     </jumps>
     <registers>
-      <register name="&quot;" type="4">
-        <text encoding="base64">IA==</text>
+      <register name="&quot;" type="2">
+        <text encoding="base64">ICAgICAgICBWaWV3IHZpZXc7Cg==</text>
       </register>
       <register name="-" type="4">
         <text encoding="base64">IA==</text>
@@ -191,31 +205,31 @@
         <text encoding="base64">ICAgICAgICBTeXN0ZW0ub3V0LnByaW50bG4oIlxuIC0tLS0tLS0tLS0tLS0tLS0tLS0gXG4iKTsK</text>
       </register>
       <register name="1" type="2">
-        <text encoding="base64">ICAgICAgICBTeXN0ZW0ub3V0LnByaW50bG4oIlJ1bm5pbmcgdG90YWwgKGluYyBWQVQpOiAiICsgcnVubmluZ1RvdGFsKTsK</text>
+        <text encoding="base64">ICAgICAgICBWaWV3IHZpZXc7Cg==</text>
       </register>
       <register name="2" type="2">
-        <text encoding="base64">ICAgICAgICBydW5uaW5nVG90YWwuYWRkQW1vdW50KHNhbGUuZ2V0VkFUKCkpOwo=</text>
+        <text encoding="base64">ICAgIHB1YmxpYyBTYWxlQ29udHJvbGxlcihJdGVtUmVnaXN0cnkgaXRlbVJlZywgTG9nIGxvZykgewo=</text>
       </register>
       <register name="3" type="2">
-        <text encoding="base64">ICAgICAgICBBbW91bnQgcnVubmluZ1RvdGFsID0gc2FsZS5nZXRSdW5uaW5nVG90YWwoKTsK</text>
+        <text encoding="base64">ICAgICAgICBsb2cgPSBuZXcgTG9nKCk7Cg==</text>
       </register>
       <register name="4" type="2">
-        <text encoding="base64">ICAgICAgICBMaXN0PEdyb3VwZWRJdGVtPiB0ZXN0ID0gc2FsZS5nZXRJdGVtTGlzdCgpOwoKICAgICAgICBmb3IgKEdyb3VwZWRJdGVtIGl0ZW0gOiB0ZXN0KSB7CiAgICAgICAgICAgIFN5c3RlbS5vdXQucHJpbnRsbihpdGVtLmdldE5hbWUoKSArICIgOiAiICsgaXRlbS5nZXRRdWFudGl0eSgpKTsKICAgICAgICB9Cg==</text>
+        <text encoding="base64">ICAgICAgICAK</text>
       </register>
       <register name="5" type="2">
-        <text encoding="base64">ICAgICAgICBTeXN0ZW0ub3V0LnByaW50bG4oIlJ1bm5pbmcgdG90YWwgKGluYyBWQVQpOiAiICsgcnVubmluZ1RvdGFsKTsK</text>
+        <text encoding="base64">ICAgICAgICBDdXN0b21lclJlZ2lzdHJ5IGN1c3RvbWVyUmVnaXN0cnk7Cg==</text>
       </register>
       <register name="6" type="2">
-        <text encoding="base64">ICAgICAgICBydW5uaW5nVG90YWwuYWRkQW1vdW50KHNhbGUuZ2V0VkFUKCkpOwo=</text>
+        <text encoding="base64">Cg==</text>
       </register>
       <register name="7" type="2">
-        <text encoding="base64">ICAgICAgICBBbW91bnQgcnVubmluZ1RvdGFsID0gc2FsZS5nZXRSdW5uaW5nVG90YWwoKTsK</text>
+        <text encoding="base64">ICAgIHByaXZhdGUgQ3VzdG9tZXJEVE8gY3VzdG9tZXI7Cg==</text>
       </register>
       <register name="8" type="2">
-        <text encoding="base64">ICAgICAgICBydW5uaW5nVG90YWwuYWRkQW1vdW50KHNhbGUuZ2V0VkFUKCkpOwo=</text>
+        <text encoding="base64">Cg==</text>
       </register>
       <register name="9" type="2">
-        <text encoding="base64">ICAgICAgICBydW5uaW5nVG90YWwgPSBzYWxlLmdldFJ1bm5pbmdUb3RhbCgpOwo=</text>
+        <text encoding="base64">ICAgIHByaXZhdGUgRGlzY291bnQgZGlzY291bnQ7Cg==</text>
       </register>
       <register name=":" type="4">
         <text>%s/tal/bigInt/g</text>
