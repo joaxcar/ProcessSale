@@ -1,0 +1,59 @@
+package se.kth.iv1350.processSale.integration;
+
+import se.kth.iv1350.processSale.model.Amount;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Keeps list of items from database. Handel searches of items.
+ */
+public class ItemRegistry {
+    List<ItemDTO> availableItems = new ArrayList<ItemDTO>();
+
+    /**
+     * Creates new instance, adds items to list of available items
+     */
+    public ItemRegistry() {
+        addItems();
+    }
+
+    /*
+     * Adds items to availableItems list
+     */
+    private void addItems() {
+        ItemDTO item1 = new ItemDTO("GameBoy", new Amount(2000), "0001", "Console");
+        ItemDTO item2 = new ItemDTO("Tetris", new Amount(340), "0002", "Game");
+        ItemDTO item3 = new ItemDTO("Super Mario 2", new Amount(280), "0003", "Game");
+        ItemDTO item4 = new ItemDTO("Mario figure", new Amount(95), "0004", "Collectable");
+        ItemDTO item5 = new ItemDTO("Zelda", new Amount(300), "0005", "Game");
+        ItemDTO item6 = new ItemDTO("AAA batteries", new Amount(19), "0006", "Misc");
+
+        availableItems.add(item1);
+        availableItems.add(item2);
+        availableItems.add(item3);
+        availableItems.add(item4);
+        availableItems.add(item5);
+        availableItems.add(item6);
+    }
+
+    /**
+     * Searches list of available items for one matching given ID string
+     *
+     * @param searchedID String to match against <code>ItemDTO</code> ID
+     * @return matching <code>ItemDTO</code> if found otherwise null
+     */
+    public ItemDTO searchItem(String searchedID) {
+        for (ItemDTO item : availableItems){
+            if (item.getItemID().equals(searchedID)){
+                return item;
+            }
+        }
+        return null;
+    }
+
+    public void updateInventory(ItemDTO item, int quantity) {
+
+    }
+
+}
