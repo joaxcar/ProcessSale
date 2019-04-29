@@ -8,6 +8,6 @@ public class AccountingSystem {
     }
 
     public void makeEntry(Payment payment){
-
+        System.out.println("Updating accounting system");
     }
 }

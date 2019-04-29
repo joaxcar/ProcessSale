@@ -38,7 +38,7 @@ public class Payment {
     public void makePayment(Amount payment) {
         amountPayed.addAmount(payment);
 
-        if (amountPayed.equals(payment)){
+        if (amountPayed.getAmount() > sale.getRunningTotalIncVAT().getAmount()){
             paymentDone = true;
         }
     }

@@ -9,7 +9,7 @@ public class Log {
     }
 
     public void logEntry(Sale saleToLog) {
-
+        System.out.println("Log Sale!");
     }
 
 }

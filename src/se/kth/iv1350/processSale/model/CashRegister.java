@@ -4,16 +4,17 @@ public class CashRegister {
 
     private Amount cash;
 
-    public CashRegister CashRegister() {
-        return null;
+    public CashRegister() {
+        cash = new Amount(0);
     }
 
     public void addCash(Amount amount) {
-
+        cash.addAmount(amount);
+        System.out.println(cash);
     }
 
-    public Amount withdrawCash(Amount amount) {
-        return null;
+    public void withdrawCash(Amount amount) {
+        cash.subtractAmount(amount);
+        System.out.println(cash);
     }
-
 }

@@ -1,11 +1,6 @@
-package se.kth.iv1350.processSale.model;
+package se.kth.iv1350.processSale.integration;
 
-import se.kth.iv1350.processSale.integration.Item;
-import se.kth.iv1350.processSale.integration.ItemDTO;
-import se.kth.iv1350.processSale.integration.VATRate;
-
-import java.util.ArrayList;
-import java.util.List;
+import se.kth.iv1350.processSale.model.Amount;
 
 public class GroupedItem implements ItemDTO {
     ItemDTO item;
@@ -20,20 +15,45 @@ public class GroupedItem implements ItemDTO {
         this.quantity = quantity;
     }
 
+    /**
+     * Increments quantity of <code>GroupedItem</code>
+     */
     public void incrementQuantity(){
         quantity += 1;
     }
 
+    /**
+     * Decrements quantity of <code>GroupedItem</code>
+     */
     public void decrementQuantity(){
         quantity -= 1;
     }
 
+    /**
+     * Returns <code>ItemDTO</code> from <code>GroupedItem</code>
+     *
+     * @return <code>ItemDTO</code> from object
+     */
     public ItemDTO getItem(){
         return item;
     }
 
+    /**
+     * Returns quantity of <code>GroupedItem</code>
+     *
+     * @return quantity of item
+     */
     public int getQuantity(){
         return quantity;
+    }
+
+    /**
+     * Set quantity of <code>GroupedItem</code>
+     *
+     * @param quantity value of new quantity
+     */
+    public void setQuantity(int quantity){
+        this.quantity = quantity;
     }
 
     public Amount getTotalPrice(){
@@ -71,11 +91,4 @@ public class GroupedItem implements ItemDTO {
         return this.item.getItemID().equals(item.getItemID());
     }
 
-    public List<ItemDTO> getAsList(){
-        List<ItemDTO> itemList = new ArrayList<ItemDTO>();
-        for (int i = 0; i < quantity; i++){
-            itemList.add(item);
-        }
-        return itemList;
-    }
 }

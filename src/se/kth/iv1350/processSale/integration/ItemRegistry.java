@@ -10,7 +10,7 @@ import java.util.List;
  * Keeps list of items from database. Handel searches of items.
  */
 public class ItemRegistry {
-    List<ItemDTO> availableItems = new ArrayList<ItemDTO>();
+    List<GroupedItem> availableItems = new ArrayList<GroupedItem>();
 
     /**
      * Creates new instance, adds items to list of available items
@@ -30,12 +30,12 @@ public class ItemRegistry {
         ItemDTO item5 = new Item("Zelda", new Amount(300), "0005", "Game",new VATRate(12));
         ItemDTO item6 = new Item("AAA batteries", new Amount(19), "0006", "Misc",new VATRate(6));
 
-        availableItems.add(item1);
-        availableItems.add(item2);
-        availableItems.add(item3);
-        availableItems.add(item4);
-        availableItems.add(item5);
-        availableItems.add(item6);
+        availableItems.add(new GroupedItem(item1, 4));
+        availableItems.add(new GroupedItem(item2, 3));
+        availableItems.add(new GroupedItem(item3,6));
+        availableItems.add(new GroupedItem(item4, 1));
+        availableItems.add(new GroupedItem(item5, 4));
+        availableItems.add(new GroupedItem(item6, 2));
     }
 
     /**
@@ -53,8 +53,22 @@ public class ItemRegistry {
         return null;
     }
 
-    public void updateInventory(List<ItemDTO> items) {
+    public void updateInventory(List<GroupedItem> items) {
+        for (GroupedItem saleItem : items){
+            for (GroupedItem inventoryItem : availableItems){
+                if (saleItem.getItemID().equals(inventoryItem.getItemID())){
+                    inventoryItem.setQuantity(inventoryItem.getQuantity()-saleItem.getQuantity());
+                    break;
+                }
+            }
+        }
+    }
 
+    public void printList(){
+        System.out.println("Inventory list: ");
+        for (GroupedItem item : availableItems){
+            System.out.println(item.getName() + " : " + item.getQuantity());
+        }
     }
 
 }

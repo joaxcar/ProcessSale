@@ -1,6 +1,4 @@
 *.xml
 out/
-out/*
 _mac/
-_mac/*
-
+codestyles/

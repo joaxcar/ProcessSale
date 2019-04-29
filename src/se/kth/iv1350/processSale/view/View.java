@@ -2,11 +2,10 @@ package se.kth.iv1350.processSale.view;
 
 import se.kth.iv1350.processSale.controller.SaleController;
 import se.kth.iv1350.processSale.model.Amount;
-import se.kth.iv1350.processSale.model.GroupedItem;
+import se.kth.iv1350.processSale.integration.GroupedItem;
 import se.kth.iv1350.processSale.model.SaleDTO;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * This application does not contain a view. This Class serves as a placeholder for a future view.
@@ -34,23 +33,29 @@ public class View {
         contr.addItemsToSale(1,"0001");
         presentRunningTotal();
         presentItemList();
+
         System.out.println("\n------------------- \n");
         contr.addItemsToSale(2,"0004");
         presentRunningTotal();
         presentItemList();
+
         System.out.println("\n------------------- \n");
         contr.addItemsToSale(1,"0002");
         presentRunningTotal();
         presentItemList();
+
         System.out.println("\n------------------- \n");
         contr.addItemsToSale(4,"0006");
         presentRunningTotal();
         presentItemList();
+
         System.out.println("\n------------------- \n");
 
-        System.out.println(sale.getLastAddedItem().getName());
-        System.out.println(sale.getItemCount());
-;
+        contr.endSale();
+
+        Amount change = contr.pay(new Amount(4000));
+        System.out.println(change);
+
     }
     private void presentItemList(){
         List<GroupedItem> items = sale.getItemList();

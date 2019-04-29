@@ -1,11 +1,10 @@
 package se.kth.iv1350.processSale.model;
 
+import se.kth.iv1350.processSale.integration.GroupedItem;
 import se.kth.iv1350.processSale.integration.ItemDTO;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Sale implements SaleDTO{
     private List<GroupedItem> items;
@@ -36,6 +35,12 @@ public class Sale implements SaleDTO{
         else if (itemIndex > notInList){
             GroupedItem oldItem = items.get(itemIndex);
             oldItem.incrementQuantity();
+        }
+    }
+
+    public void addItem(ItemDTO newItem, int quantity){
+        for (int i = 0; i < quantity; i++){
+            addItem(newItem);
         }
     }
 
