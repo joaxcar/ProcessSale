@@ -3,7 +3,9 @@ package se.kth.iv1350.processSale.model;
 import se.kth.iv1350.processSale.integration.ItemDTO;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Sale implements SaleDTO{
     private List<ItemDTO> items;
@@ -58,4 +60,18 @@ public class Sale implements SaleDTO{
 	public int getItemCount() {
 		return items.size();
 	}
+
+    @Override
+    public Map<String, Integer> getItemList() {
+        Map<String, Integer> itemCounts = new HashMap<String, Integer>();
+
+        for (ItemDTO item : items) {
+            if (itemCounts.containsKey(item.getName())) {
+                itemCounts.put(item.getName(), itemCounts.get(item.getName()) + 1);
+            } else {
+                itemCounts.put(item.getName(), 1);
+            }
+        }
+        return itemCounts;
+    }
 }

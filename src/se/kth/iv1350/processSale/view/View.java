@@ -2,7 +2,8 @@ package se.kth.iv1350.processSale.view;
 
 import se.kth.iv1350.processSale.controller.SaleController;
 import se.kth.iv1350.processSale.model.SaleDTO;
-import se.kth.iv1350.processSale.model.SaleStateDTO;
+
+import java.util.Map;
 
 /**
  * This application does not contain a view. This Class serves as a placeholder for a future view.
@@ -10,7 +11,6 @@ import se.kth.iv1350.processSale.model.SaleStateDTO;
 public class View {
 
     private SaleController contr;
-    private SaleStateDTO saleState;
     private SaleDTO sale;
 
     /**
@@ -39,5 +39,11 @@ public class View {
         System.out.println(sale.lastAddedItem().getName());
         System.out.println(sale.lastAddedItemQuantity());
         System.out.println(sale.getItemCount());
+        Map<String, Integer> test = sale.getItemList();
+
+        for (Map.Entry<String, Integer> entry : test.entrySet()) {
+            System.out.println(entry.getKey() + " : " + entry.getValue());
+        }
+;
     }
 }
