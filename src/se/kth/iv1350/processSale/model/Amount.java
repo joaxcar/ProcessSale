@@ -8,6 +8,10 @@ public class Amount {
         this.amount=amount;
     }
 
+    public Amount(Amount amount){
+        this.amount=amount.getAmount();
+    }
+
     public String toString(){
         return Integer.toString(amount);
     }
@@ -18,6 +22,10 @@ public class Amount {
 
     public void addAmount(Amount newAmount){
         amount = amount + newAmount.getAmount();
+    }
+
+    public void multiplyAmount(int multiplier){
+        amount = amount * multiplier;
     }
 
 }

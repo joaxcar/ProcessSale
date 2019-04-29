@@ -1,8 +1,10 @@
 package se.kth.iv1350.processSale.view;
 
 import se.kth.iv1350.processSale.controller.SaleController;
+import se.kth.iv1350.processSale.model.GroupedItem;
 import se.kth.iv1350.processSale.model.SaleDTO;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -36,13 +38,12 @@ public class View {
         contr.addItemsToSale(4,"0006");
 
         System.out.println(sale.getRunningTotal());
-        System.out.println(sale.lastAddedItem().getName());
-        System.out.println(sale.lastAddedItemQuantity());
+        System.out.println(sale.getLastAddedItem().getName());
         System.out.println(sale.getItemCount());
-        Map<String, Integer> test = sale.getItemList();
+        List<GroupedItem> test = sale.getItemList();
 
-        for (Map.Entry<String, Integer> entry : test.entrySet()) {
-            System.out.println(entry.getKey() + " : " + entry.getValue());
+        for (GroupedItem item : test) {
+            System.out.println(item.getName() + " : " + item.getQuantity());
         }
 ;
     }
