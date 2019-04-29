@@ -4,6 +4,9 @@ import se.kth.iv1350.processSale.integration.Item;
 import se.kth.iv1350.processSale.integration.ItemDTO;
 import se.kth.iv1350.processSale.integration.VATRate;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GroupedItem implements ItemDTO {
     ItemDTO item;
     int quantity;
@@ -66,5 +69,13 @@ public class GroupedItem implements ItemDTO {
 
     public boolean equalItem(ItemDTO item){
         return this.item.getItemID().equals(item.getItemID());
+    }
+
+    public List<ItemDTO> getAsList(){
+        List<ItemDTO> itemList = new ArrayList<ItemDTO>();
+        for (int i = 0; i < quantity; i++){
+            itemList.add(item);
+        }
+        return itemList;
     }
 }

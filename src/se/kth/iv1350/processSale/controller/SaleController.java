@@ -1,5 +1,6 @@
 package se.kth.iv1350.processSale.controller;
 
+import se.kth.iv1350.processSale.integration.AccountingSystem;
 import se.kth.iv1350.processSale.integration.ItemDTO;
 import se.kth.iv1350.processSale.integration.ItemRegistry;
 import se.kth.iv1350.processSale.integration.Log;
@@ -10,13 +11,15 @@ public class SaleController {
     private Sale currentSale;
 
     private Payment currentPayment;
-
+    private AccountingSystem accountingSys;
     private CashRegister cashRegister;
     private ItemRegistry itemReg;
     private Log log;
 
-    public SaleController(ItemRegistry itemReg, Log log) {
+    public SaleController(CashRegister cashRegister, ItemRegistry itemReg, Log log, AccountingSystem accountingSys) {
+       this.cashRegister = cashRegister;
        this.itemReg = itemReg;
+       this.accountingSys = accountingSys;
        this.log = log;
     }
 
@@ -39,11 +42,24 @@ public class SaleController {
 
     public SaleDTO endSale() {
         currentPayment = new Payment(currentSale, cashRegister, log);
-        return null;
+        currentSale = null;
+        return currentPayment.getSale();
     }
 
-    public void pay(Amount paidAmt) {
+    public Amount pay(Amount paidAmt) {
+        currentPayment.makePayment(paidAmt);
+        Amount change = currentPayment.getChange();
 
+        if (currentPayment.checkPaymentDone()){
+            currentPayment.endPayment();
+            accountingSys.makeEntry(currentPayment);
+            for (GroupedItem item : currentPayment.getSale().getItemList()){
+                itemReg.updateInventory(item.getAsList());
+            }
+            currentPayment = null;
+        }
+
+        return change;
     }
 
 }

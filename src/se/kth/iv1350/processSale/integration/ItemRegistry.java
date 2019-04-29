@@ -1,6 +1,7 @@
 package se.kth.iv1350.processSale.integration;
 
 import se.kth.iv1350.processSale.model.Amount;
+import se.kth.iv1350.processSale.model.SaleDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +53,7 @@ public class ItemRegistry {
         return null;
     }
 
-    public void updateInventory(ItemDTO item, int quantity) {
+    public void updateInventory(List<ItemDTO> items) {
 
     }
 

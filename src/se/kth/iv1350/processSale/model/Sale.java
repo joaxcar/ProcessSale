@@ -81,6 +81,14 @@ public class Sale implements SaleDTO{
     }
 
     @Override
+    public Amount getRunningTotalIncVAT() {
+        Amount totalIncVAT = new Amount(0);
+        totalIncVAT.addAmount(getRunningTotal());
+        totalIncVAT.addAmount(getVAT());
+        return totalIncVAT;
+    }
+
+    @Override
 	public int getItemCount() {
         int count = 0;
         for (GroupedItem item : items){

@@ -24,8 +24,20 @@ public class Amount {
         amount = amount + newAmount.getAmount();
     }
 
+    public void subtractAmount(Amount newAmount){
+        amount = amount - newAmount.getAmount();
+    }
+
     public void multiplyAmount(int multiplier){
         amount = amount * multiplier;
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Amount amount1 = (Amount) o;
+        return Double.compare(amount1.amount, amount) == 0;
+    }
 }

@@ -13,6 +13,8 @@ public interface SaleDTO {
 
     Amount getVAT();
 
+    Amount getRunningTotalIncVAT();
+
     int getItemCount();
 
     List<GroupedItem> getItemList();
