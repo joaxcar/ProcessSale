@@ -2,6 +2,7 @@ package se.kth.iv1350.processSale.model;
 
 import se.kth.iv1350.processSale.integration.Item;
 import se.kth.iv1350.processSale.integration.ItemDTO;
+import se.kth.iv1350.processSale.integration.VATRate;
 
 public class GroupedItem implements ItemDTO {
     ItemDTO item;
@@ -46,6 +47,11 @@ public class GroupedItem implements ItemDTO {
     @Override
     public Amount getPrice() {
         return item.getPrice();
+    }
+
+    @Override
+    public VATRate getVATRate() {
+        return item.getVATRate();
     }
 
     @Override

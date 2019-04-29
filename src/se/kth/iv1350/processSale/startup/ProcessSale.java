@@ -1,7 +1,6 @@
 package se.kth.iv1350.processSale.startup;
 
 import se.kth.iv1350.processSale.controller.SaleController;
-import se.kth.iv1350.processSale.integration.CustomerRegistry;
 import se.kth.iv1350.processSale.integration.ItemRegistry;
 import se.kth.iv1350.processSale.integration.Log;
 import se.kth.iv1350.processSale.view.View;
@@ -20,14 +19,12 @@ public class ProcessSale {
         SaleController contr;
         ItemRegistry itemReg;
         View view;
-
         Log log;
-        CustomerRegistry customerRegistry;
 
         itemReg = new ItemRegistry();
-        contr = new SaleController(itemReg);
+        log = new Log();
+        contr = new SaleController(itemReg, log);
         view = new View(contr);
-
         view.testRun();
     }
 

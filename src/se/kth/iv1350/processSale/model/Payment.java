@@ -1,6 +1,6 @@
 package se.kth.iv1350.processSale.model;
 
-import se.kth.iv1350.processSale.integration.CustomerDTO;
+import se.kth.iv1350.processSale.integration.Log;
 
 public class Payment {
 
@@ -8,16 +8,15 @@ public class Payment {
 
     private boolean paymentMade;
 
-    private CustomerDTO customer;
-
-    private Logger logger;
-
-    private Discount discount;
+    private Log log;
 
     private CashRegister cashRegister;
 
-    public Payment Payment(Sale activeSale) {
-        return null;
+    public Payment(Sale sale, CashRegister cashRegister, Log log) {
+        this.sale = sale;
+        this.cashRegister = cashRegister;
+        this.log = log;
+        paymentMade = false;
     }
 
     public void makePayment(Amount payment) {

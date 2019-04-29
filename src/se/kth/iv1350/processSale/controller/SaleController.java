@@ -2,8 +2,8 @@ package se.kth.iv1350.processSale.controller;
 
 import se.kth.iv1350.processSale.integration.ItemDTO;
 import se.kth.iv1350.processSale.integration.ItemRegistry;
+import se.kth.iv1350.processSale.integration.Log;
 import se.kth.iv1350.processSale.model.*;
-import se.kth.iv1350.processSale.integration.CustomerDTO;
 
 public class SaleController {
 
@@ -13,9 +13,11 @@ public class SaleController {
 
     private CashRegister cashRegister;
     private ItemRegistry itemReg;
+    private Log log;
 
-    public SaleController(ItemRegistry itemReg) {
+    public SaleController(ItemRegistry itemReg, Log log) {
        this.itemReg = itemReg;
+       this.log = log;
     }
 
     public SaleDTO initializeSale() {
@@ -34,11 +36,9 @@ public class SaleController {
 
     }
 
-    public void useDiscount(CustomerDTO customer) {
 
-    }
-
-    public Sale endSale() {
+    public SaleDTO endSale() {
+        currentPayment = new Payment(currentSale, cashRegister, log);
         return null;
     }
 

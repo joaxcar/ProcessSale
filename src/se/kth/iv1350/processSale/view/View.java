@@ -1,6 +1,7 @@
 package se.kth.iv1350.processSale.view;
 
 import se.kth.iv1350.processSale.controller.SaleController;
+import se.kth.iv1350.processSale.model.Amount;
 import se.kth.iv1350.processSale.model.GroupedItem;
 import se.kth.iv1350.processSale.model.SaleDTO;
 
@@ -30,21 +31,37 @@ public class View {
     public void testRun(){
         sale = contr.initializeSale();
 
-        System.out.println(sale.getRunningTotal());
-
         contr.addItemsToSale(1,"0001");
+        presentRunningTotal();
+        presentItemList();
+        System.out.println("\n------------------- \n");
         contr.addItemsToSale(2,"0004");
+        presentRunningTotal();
+        presentItemList();
+        System.out.println("\n------------------- \n");
         contr.addItemsToSale(1,"0002");
+        presentRunningTotal();
+        presentItemList();
+        System.out.println("\n------------------- \n");
         contr.addItemsToSale(4,"0006");
+        presentRunningTotal();
+        presentItemList();
+        System.out.println("\n------------------- \n");
 
-        System.out.println(sale.getRunningTotal());
         System.out.println(sale.getLastAddedItem().getName());
         System.out.println(sale.getItemCount());
-        List<GroupedItem> test = sale.getItemList();
+;
+    }
+    private void presentItemList(){
+        List<GroupedItem> items = sale.getItemList();
 
-        for (GroupedItem item : test) {
+        for (GroupedItem item : items) {
             System.out.println(item.getName() + " : " + item.getQuantity());
         }
-;
+    }
+    private void presentRunningTotal(){
+        Amount runningTotal = sale.getRunningTotal();
+        runningTotal.addAmount(sale.getVAT());
+        System.out.println("Running total (inc VAT): " + runningTotal);
     }
 }

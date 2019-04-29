@@ -2,9 +2,9 @@ package se.kth.iv1350.processSale.model;
 
 public class Amount {
 
-    private int amount;
+    private double amount;
 
-    public Amount(int amount){
+    public Amount(double amount){
         this.amount=amount;
     }
 
@@ -13,10 +13,10 @@ public class Amount {
     }
 
     public String toString(){
-        return Integer.toString(amount);
+        return Double.toString(amount);
     }
 
-    public int getAmount(){
+    public double getAmount(){
         return amount;
     }
 

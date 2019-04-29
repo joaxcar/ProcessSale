@@ -12,11 +12,14 @@ public class Item  implements ItemDTO{
 
     private String type;
 
-    public Item(String name, Amount price, String itemID, String type){
+    private VATRate vatRate;
+
+    public Item(String name, Amount price, String itemID, String type, VATRate vatRate){
         this.name = name;
         this.price = price;
         this.itemID = itemID;
         this.type = type;
+        this.vatRate = vatRate;
     }
 
     public String getName() {
@@ -25,6 +28,10 @@ public class Item  implements ItemDTO{
 
     public Amount getPrice(){
         return new Amount(price);
+    }
+
+    public VATRate getVATRate(){
+        return vatRate;
     }
 
     public String getItemID() {
