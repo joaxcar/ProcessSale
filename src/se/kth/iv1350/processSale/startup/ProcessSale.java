@@ -1,5 +1,6 @@
 package se.kth.iv1350.processSale.startup;
 
+import se.kth.iv1350.processSale.controller.PaymentController;
 import se.kth.iv1350.processSale.controller.SaleController;
 import se.kth.iv1350.processSale.integration.AccountingSystem;
 import se.kth.iv1350.processSale.integration.ItemRegistry;
@@ -18,7 +19,8 @@ public class ProcessSale {
      * @param args The application does not take any arguments
      */
     public static void main(String[] args) {
-        SaleController contr;
+        SaleController saleContr;
+        PaymentController paymentContr;
         ItemRegistry itemReg;
         AccountingSystem accountingSys;
         CashRegister cashRegister;
@@ -27,10 +29,11 @@ public class ProcessSale {
 
         itemReg = new ItemRegistry();
         log = new Log();
-        cashRegister = new CashRegister();
+        cashRegister = new CashRegister("Register 1");
         accountingSys = new AccountingSystem();
-        contr = new SaleController(cashRegister, itemReg, log, accountingSys);
-        view = new View(contr);
+        saleContr = new SaleController (itemReg);
+        paymentContr = new PaymentController(accountingSys, cashRegister, log, itemReg);
+        view = new View(saleContr, paymentContr);
         view.testRun();
     }
 

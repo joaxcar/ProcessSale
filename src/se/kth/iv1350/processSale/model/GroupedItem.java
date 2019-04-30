@@ -1,6 +1,6 @@
-package se.kth.iv1350.processSale.integration;
+package se.kth.iv1350.processSale.model;
 
-import se.kth.iv1350.processSale.model.Amount;
+import se.kth.iv1350.processSale.integration.VATRate;
 
 public class GroupedItem extends Item {
     int quantity;
@@ -10,7 +10,7 @@ public class GroupedItem extends Item {
         quantity = 0;
     }
 
-    public GroupedItem(String name, Amount price, String itemID, String type, VATRate vatRate, int quantity){
+    public GroupedItem(String name, double price, String itemID, String type, VATRate vatRate, int quantity){
         super( name,  price,  itemID,  type,  vatRate);
         this.quantity = quantity;
     }
@@ -56,9 +56,9 @@ public class GroupedItem extends Item {
         this.quantity = quantity;
     }
 
-    public Amount getTotalPrice(){
-        Amount totalPrice = getPrice();
-        totalPrice.multiplyAmount(new Amount(quantity));
+    public double getTotalPrice(){
+        double totalPrice = getPrice();
+        totalPrice = totalPrice * quantity;
         return totalPrice;
     }
 

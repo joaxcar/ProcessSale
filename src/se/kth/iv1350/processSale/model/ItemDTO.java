@@ -1,14 +1,14 @@
-package se.kth.iv1350.processSale.integration;
+package se.kth.iv1350.processSale.model;
 
-import se.kth.iv1350.processSale.model.Amount;
+import se.kth.iv1350.processSale.integration.VATRate;
 
 public interface ItemDTO {
 
     public String getName();
 
-    public Amount getPrice();
+    public double getPrice();
 
-    public Amount getPriceIncVAT();
+    public double getPriceIncVAT();
 
     public VATRate getVATRate();
 

@@ -3,25 +3,19 @@ package se.kth.iv1350.processSale.controller;
 import se.kth.iv1350.processSale.integration.*;
 import se.kth.iv1350.processSale.model.*;
 
+import java.util.List;
+
 public class SaleController {
 
     private Sale currentSale;
-    private Payment currentPayment;
-    private AccountingSystem accountingSys;
-    private CashRegister cashRegister;
     private ItemRegistry itemReg;
-    private Log log;
 
-    public SaleController(CashRegister cashRegister, ItemRegistry itemReg, Log log, AccountingSystem accountingSys) {
-       this.cashRegister = cashRegister;
+    public SaleController(ItemRegistry itemReg) {
        this.itemReg = itemReg;
-       this.accountingSys = accountingSys;
-       this.log = log;
     }
 
-    public SaleDTO initializeSale() {
+    public void initializeSale() {
         currentSale = new Sale();
-        return currentSale;
     }
 
     public void addItemsToSale(int quantity, String itemID) {
@@ -33,24 +27,32 @@ public class SaleController {
 
     }
 
-    public SaleDTO endSale() {
-        currentPayment = new Payment(currentSale, cashRegister, log);
+    public void endSale(PaymentController paymentContr) {
+        paymentContr.initializePayment(currentSale);
         currentSale = null;
-        return currentPayment.getSale();
     }
 
-    public Amount pay(Amount paidAmt) {
-        currentPayment.makePayment(paidAmt);
-        Amount change = currentPayment.getChange();
 
-        if (currentPayment.checkPaymentDone()){
-            currentPayment.endPayment();
-            accountingSys.makeEntry(currentPayment);
-            itemReg.updateInventory(currentPayment);
-            currentPayment = null;
+    public double getRunningTotalIncVAT(){
+        return currentSale.getRunningTotalIncVAT();
+    }
+    /**
+     * Returns number of items in <code>Sale</code>
+     *
+     * @return number of items as an integer
+     */
+    public int getItemCount() {
+        List<ItemDTO> itemList = currentSale.getItemList();
+        return itemList.size();
+    }
+
+    public ItemDTO getLastAddedItem(){
+        List<ItemDTO> itemList = currentSale.getItemList();
+        int lastIndex = itemList.size() -1;
+        if (lastIndex >= 0){
+            ItemDTO lastAddedItem = itemList.get(lastIndex);
+            return lastAddedItem;
         }
-
-        return change;
+        return new Item();
     }
-
 }

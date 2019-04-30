@@ -1,12 +1,12 @@
-package se.kth.iv1350.processSale.integration;
+package se.kth.iv1350.processSale.model;
 
-import se.kth.iv1350.processSale.model.Amount;
+import se.kth.iv1350.processSale.integration.VATRate;
 
-public class Item  implements ItemDTO{
+public class Item  implements ItemDTO {
 
     private String name;
 
-    private Amount price;
+    private double price;
 
     private String itemID;
 
@@ -14,7 +14,7 @@ public class Item  implements ItemDTO{
 
     private VATRate vatRate;
 
-    public Item(String name, Amount price, String itemID, String type, VATRate vatRate){
+    public Item(String name, double price, String itemID, String type, VATRate vatRate){
         this.name = name;
         this.price = price;
         this.itemID = itemID;
@@ -32,7 +32,7 @@ public class Item  implements ItemDTO{
 
     public Item() {
         name = "";
-        price = new Amount(0);
+        price = 0.0;
         itemID = "";
         type = "";
         vatRate = new VATRate(0);
@@ -44,14 +44,14 @@ public class Item  implements ItemDTO{
     }
 
     @Override
-    public Amount getPrice(){
-        return new Amount(price);
+    public double getPrice(){
+        return price;
     }
 
     @Override
-    public Amount getPriceIncVAT() {
-        double priceIncVAT = price.getAmount() + price.getAmount() * vatRate.getRate();
-        return new Amount(priceIncVAT);
+    public double getPriceIncVAT() {
+        double priceIncVAT = price + price * vatRate.getRate();
+        return priceIncVAT;
     }
 
     @Override

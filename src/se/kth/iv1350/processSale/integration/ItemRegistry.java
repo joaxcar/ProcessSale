@@ -1,9 +1,6 @@
 package se.kth.iv1350.processSale.integration;
 
-import se.kth.iv1350.processSale.model.Amount;
-import se.kth.iv1350.processSale.model.Payment;
-import se.kth.iv1350.processSale.model.Sale;
-import se.kth.iv1350.processSale.model.SaleDTO;
+import se.kth.iv1350.processSale.model.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,12 +22,12 @@ public class ItemRegistry {
      * Adds items to availableItems list
      */
     private void addItems() {
-        ItemDTO item1 = new Item("GameBoy", new Amount(2000), "0001", "Console", new VATRate(25));
-        ItemDTO item2 = new Item("Tetris", new Amount(340), "0002", "Game",new VATRate(12));
-        ItemDTO item3 = new Item("Super Mario 2", new Amount(280), "0003", "Game",new VATRate(25));
-        ItemDTO item4 = new Item("Mario figure", new Amount(95), "0004", "Collectable",new VATRate(12));
-        ItemDTO item5 = new Item("Zelda", new Amount(300), "0005", "Game",new VATRate(12));
-        ItemDTO item6 = new Item("AAA batteries", new Amount(19), "0006", "Misc",new VATRate(6));
+        ItemDTO item1 = new Item("GameBoy", 2000, "0001", "Console", new VATRate(25));
+        ItemDTO item2 = new Item("Tetris", 340, "0002", "Game",new VATRate(12));
+        ItemDTO item3 = new Item("Super Mario 2", 280, "0003", "Game",new VATRate(25));
+        ItemDTO item4 = new Item("Mario figure", 95, "0004", "Collectable",new VATRate(12));
+        ItemDTO item5 = new Item("Zelda", 300, "0005", "Game",new VATRate(12));
+        ItemDTO item6 = new Item("AAA batteries", 19, "0006", "Misc",new VATRate(6));
 
         availableItems.add(new GroupedItem(item1, 4));
         availableItems.add(new GroupedItem(item2, 3));
@@ -55,8 +52,8 @@ public class ItemRegistry {
         return null;
     }
 
-    public void updateInventory(Payment payment) {
-        Sale payedSale = payment.getSale();
+    public void updateInventory(Sale sale) {
+        Sale payedSale = sale;
         for (GroupedItem saleItem : payedSale.getGroupedItemList()){
             for (GroupedItem inventoryItem : availableItems){
                 if (saleItem.getItemID().equals(inventoryItem.getItemID())){
