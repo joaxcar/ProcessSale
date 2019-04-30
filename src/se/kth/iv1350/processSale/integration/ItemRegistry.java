@@ -52,7 +52,8 @@ public class ItemRegistry {
         return null;
     }
 
-    public void updateInventory(Sale sale) {
+    public void updateInventory(SaleDTO sale) {
+        System.out.println("Updating registry items");
         for (GroupedItem saleItem : sale.getGroupedItemList()){
             for (GroupedItem inventoryItem : availableItems){
                 if (saleItem.getItemID().equals(inventoryItem.getItemID())){

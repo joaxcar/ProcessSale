@@ -119,5 +119,12 @@ public class Sale implements SaleDTO{
         return totalIncVAT;
     }
 
+    public ItemDTO getLastAddedItem(){
+        int lastIndex = items.size() -1;
+        if (lastIndex >= 0){
+            return items.get(lastIndex);
+        }
+        return new Item();
+    }
 
 }

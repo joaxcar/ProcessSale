@@ -6,6 +6,7 @@ public interface SaleDTO {
 
     List<ItemDTO> getItemList();
     List<GroupedItem> getGroupedItemList();
+    ItemDTO getLastAddedItem();
 
     double getRunningTotalIncVAT();
     double getVAT();

@@ -5,6 +5,7 @@ import se.kth.iv1350.processSale.controller.SaleController;
 import se.kth.iv1350.processSale.integration.AccountingSystem;
 import se.kth.iv1350.processSale.integration.ItemRegistry;
 import se.kth.iv1350.processSale.integration.Log;
+import se.kth.iv1350.processSale.integration.Printer;
 import se.kth.iv1350.processSale.model.CashRegister;
 import se.kth.iv1350.processSale.view.View;
 
@@ -26,13 +27,15 @@ public class ProcessSale {
         CashRegister cashRegister;
         Log log;
         View view;
+        Printer printer;
 
         itemReg = new ItemRegistry();
         log = new Log();
         cashRegister = new CashRegister("Register 1");
         accountingSys = new AccountingSystem();
+        printer = new Printer();
         saleContr = new SaleController (itemReg);
-        paymentContr = new PaymentController(accountingSys, cashRegister, log, itemReg);
+        paymentContr = new PaymentController(accountingSys, cashRegister, log, itemReg, printer);
         view = new View(saleContr, paymentContr);
 
         view.testRun();

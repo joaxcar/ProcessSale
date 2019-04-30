@@ -3,18 +3,18 @@ package se.kth.iv1350.processSale.controller;
 import se.kth.iv1350.processSale.integration.AccountingSystem;
 import se.kth.iv1350.processSale.integration.ItemRegistry;
 import se.kth.iv1350.processSale.integration.Log;
+import se.kth.iv1350.processSale.integration.Printer;
 import se.kth.iv1350.processSale.model.*;
 
 public class PaymentController {
 
     private Sale sale;
-    private Reciept reciept;
     private AccountingSystem accountingSys;
     private CashRegister cashRegister;
     private Log log;
-    private boolean paymentDone;
-    private Cash payment;
+    private Money payment;
     private ItemRegistry itemReg;
+    Printer printer;
 
     /**
      * Create new instance
@@ -23,71 +23,80 @@ public class PaymentController {
      * @param cashRegister <code>CashRegister</code> to use for payment
      * @param log <code>Log</code> to use to log sale
      */
-    public PaymentController(AccountingSystem accountingSys, CashRegister cashRegister, Log log, ItemRegistry itemReg) {
+    public PaymentController(AccountingSystem accountingSys, CashRegister cashRegister, Log log, ItemRegistry itemReg, Printer printer) {
         this.accountingSys = accountingSys;
         this.cashRegister = cashRegister;
         this.log = log;
         this.itemReg = itemReg;
+        this.printer = printer;
+        payment = new Money("0");
     }
 
-    //public Amount pay(Amount paidAmt) {
-        //currentPayment.makePayment(paidAmt);
-        //Amount change = currentPayment.getChange();
-//
-        //if (currentPayment.checkPaymentDone()){
-            //currentPayment.endPayment();
-            //accountingSys.makeEntry(currentPayment);
-            //itemReg.updateInventory(currentPayment);
-            //currentPayment = null;
-        //}
-//
-        //return change;
-    //}
-
+    /**
+     * Starts a new <code>Payment</code> instance for <code>Sale</code> object
+     *
+     * @param sale <code>Sale</code> object to connect to <code>Payment</code>
+     */
     public void initializePayment(Sale sale) {
         this.sale = sale;
     }
 
-    public void makePayment(Cash payment) {
-        payment.addCash(payment);
-        if (payment.getAmount() > getTotalPriceIncVAT()){
-            paymentDone = true;
-        }
+    /**
+     * Add amount to <code>Payment</code>
+     *
+     * @param payment Amount to be added
+     */
+    public void makePayment(String payment) {
+        this.payment.add(new Money(payment));
     }
 
+    /**
+     * Check if amount payed is greater or equals the total price of the <code>Sale</code>
+     *
+     * @return <code>true</code> if amount is greater or equal to total price
+     */
     public boolean checkPaymentDone(){
+        boolean paymentDone = payment.greaterThan(new Money(sale.getRunningTotalIncVAT()));
         return paymentDone;
     }
 
+    /**
+     * End current payment if payment is done. Update systems and print reciept
+     */
+    public void endPayment(){
+        if(checkPaymentDone()){
+            Reciept reciept = new Reciept(sale, payment, calculateChange(), cashRegister.getRegisterID());
+            cashRegister.addCash(payment);
+            cashRegister.withdrawCash(calculateChange());
+            accountingSys.makeEntry(reciept);
+            itemReg.updateInventory(sale);
+            printer.printReciept(reciept);
+            sale = null;
+        }
+    }
 
     /**
-     * Returns <code>Sale</code> related to
+     * Returns <code>Sale</code> related to payment
      *
-     * @return <code>Sale</code> related to
+     * @return <code>Sale</code> related to payment
      */
     public SaleDTO getSale(){
         return sale;
     }
 
-    public double getTotalPriceIncVAT() {
-        return sale.getRunningTotalIncVAT();
+    public String getAmountPayed(){
+        return payment.toString();
     }
 
-
-    public double getAmountPayed(){
-        return payment.getAmount();
+    public String getChange(){
+        return calculateChange().toString();
     }
 
-    public Cash getChange(){
-        Cash change = new Cash(sale.getRunningTotalIncVAT() - payment.getAmount());
+    private Money calculateChange(){
+        double totalPrice = sale.getRunningTotalIncVAT();
+        Money change = new Money(payment);
+        change.subtract(new Money(Double.toString(totalPrice)));
         return change;
     }
 
-    public void endPayment(){
-        if(paymentDone){
-            reciept = new Reciept(sale, payment, getChange(), cashRegister.getRegisterID());
-            cashRegister.addCash(payment);
-            cashRegister.withdrawCash(getChange());
-        }
-    }
 }

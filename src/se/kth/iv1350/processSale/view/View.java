@@ -5,8 +5,6 @@ import se.kth.iv1350.processSale.controller.SaleController;
 import se.kth.iv1350.processSale.model.ItemDTO;
 import se.kth.iv1350.processSale.model.SaleDTO;
 
-import java.util.List;
-
 /**
  * This application does not contain a view. This Class serves as a placeholder for a future view.
  */
@@ -14,13 +12,13 @@ public class View {
 
     private SaleController saleContr;
     private PaymentController paymentContr;
-    private SaleDTO sale;
 
     /**
-     * Create new instance, set given <code>SaleController</code> as controller
+     * Create new instance, set given <code>SaleController</code> as sale controller
+     * and givem <code>PaymentController</code> as payment controller
      *
-     * @param saleContr <code>SaleController</code> to use as controller
-     * @param paymentContr
+     * @param saleContr <code>SaleController</code> for sale
+     * @param paymentContr <code>PaymentController</code> for payment
      */
     public View(SaleController saleContr, PaymentController paymentContr) {
         this.saleContr = saleContr;
@@ -46,26 +44,25 @@ public class View {
         saleContr.addItemsToSale(4,"0006");
         presentSaleInfo();
 
-
         saleContr.endSale(paymentContr);
-        System.out.println("End of sale \nList of items:\n");
-        System.out.println("Total price (inc VAT): " + paymentContr.getTotalPriceIncVAT() + "\n");
 
+        System.out.println("Total price (inc VAT): " + paymentContr.getSale().getRunningTotalIncVAT() + "\n");
 
-        //System.out.println("\nChange: " + change);
+        paymentContr.makePayment("4000");
 
+        System.out.println("\nChange: " + paymentContr.getChange());
+
+        paymentContr.endPayment();
     }
-    private void presentItemList(){
-        List<ItemDTO> items = sale.getItemList();
 
-        for (ItemDTO item : items) {
-            System.out.println(item.getName() + " : " + item.getQuantity());
-        }
-    }
+    /*
+     * Retrieves and prints sale info to terminal
+     */
     private void presentSaleInfo(){
-        ItemDTO lastAddedItem = saleContr.getLastAddedItem();
+        SaleDTO currentSale = saleContr.getSaleInfo();
+        ItemDTO lastAddedItem = currentSale.getLastAddedItem();
         System.out.println("-------------------");
-        System.out.println("Running total (inc VAT): " + saleContr.getRunningTotalIncVAT());
+        System.out.println("Running total (inc VAT): " + currentSale.getRunningTotalIncVAT());
         System.out.println("Last added item name: " + lastAddedItem.getName());
         System.out.println("Last added item price: " + lastAddedItem.getPriceIncVAT());
         System.out.println("-------------------\n");
