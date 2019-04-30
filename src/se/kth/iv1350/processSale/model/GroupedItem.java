@@ -1,7 +1,7 @@
 package se.kth.iv1350.processSale.model;
 
 public class GroupedItem extends Item {
-    int quantity;
+    private int quantity;
 
     public GroupedItem(){
         super();

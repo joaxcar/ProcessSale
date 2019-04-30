@@ -2,8 +2,8 @@ package se.kth.iv1350.processSale.model;
 
 public class CashRegister {
 
-    private String registerID;
-    private Money money;
+    private final String registerID;
+    private final Money money;
 
     public CashRegister(String registerID) {
         money = new Money();

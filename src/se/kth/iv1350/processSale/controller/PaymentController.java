@@ -14,7 +14,7 @@ public class PaymentController {
     private Log log;
     private Money payment;
     private ItemRegistry itemReg;
-    Printer printer;
+    private Printer printer;
 
     /**
      * Create new instance
@@ -69,6 +69,7 @@ public class PaymentController {
             cashRegister.addCash(payment);
             cashRegister.withdrawCash(calculateChange());
             accountingSys.makeEntry(reciept);
+            log.logEntry(sale);
             itemReg.updateInventory(sale);
             printer.printReciept(reciept);
             sale = null;

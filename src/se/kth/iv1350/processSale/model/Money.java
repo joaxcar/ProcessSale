@@ -37,10 +37,7 @@ public class Money {
 
     public boolean greaterThan(Money amount){
         int greaterThan = this.amount.compareTo(new BigDecimal(amount.toString()));
-        if (greaterThan == 1){
-            return true;
-        }
-        return false;
+        return greaterThan > 0;
     }
 
 }

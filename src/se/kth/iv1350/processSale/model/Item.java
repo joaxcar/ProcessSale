@@ -68,7 +68,7 @@ public class Item  implements ItemDTO {
 
     @Override
     public int getQuantity() {
-        if (itemID == ""){
+        if (itemID.equals("")){
             return 0;
         }
         return 1;

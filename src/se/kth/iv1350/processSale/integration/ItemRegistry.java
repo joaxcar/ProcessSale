@@ -9,7 +9,7 @@ import java.util.List;
  * Keeps list of items from database. Handel searches of items.
  */
 public class ItemRegistry {
-    List<GroupedItem> availableItems = new ArrayList<GroupedItem>();
+    private List<GroupedItem> availableItems = new ArrayList<GroupedItem>();
 
     /**
      * Creates new instance, adds items to list of available items
