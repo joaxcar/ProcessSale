@@ -73,6 +73,15 @@ public class GroupedItem implements ItemDTO {
     }
 
     @Override
+    public Amount getPriceIncVAT() {
+        Amount vat = item.getPrice();
+        vat.multiplyAmount(item.getVATRate().getRate());
+        Amount price = item.getPrice();
+        price.addAmount(new Amount(vat));
+        return price;
+    }
+
+    @Override
     public VATRate getVATRate() {
         return item.getVATRate();
     }

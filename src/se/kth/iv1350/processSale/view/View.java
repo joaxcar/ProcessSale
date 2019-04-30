@@ -1,6 +1,7 @@
 package se.kth.iv1350.processSale.view;
 
 import se.kth.iv1350.processSale.controller.SaleController;
+import se.kth.iv1350.processSale.integration.ItemDTO;
 import se.kth.iv1350.processSale.model.Amount;
 import se.kth.iv1350.processSale.integration.GroupedItem;
 import se.kth.iv1350.processSale.model.SaleDTO;
@@ -31,25 +32,17 @@ public class View {
         sale = contr.initializeSale();
 
         contr.addItemsToSale(1,"0001");
-        presentRunningTotal();
-        presentItemList();
+        presentSaleInfo();
 
-        System.out.println("\n------------------- \n");
         contr.addItemsToSale(2,"0004");
-        presentRunningTotal();
-        presentItemList();
+        presentSaleInfo();
 
-        System.out.println("\n------------------- \n");
         contr.addItemsToSale(1,"0002");
-        presentRunningTotal();
-        presentItemList();
+        presentSaleInfo();
 
-        System.out.println("\n------------------- \n");
         contr.addItemsToSale(4,"0006");
-        presentRunningTotal();
-        presentItemList();
+        presentSaleInfo();
 
-        System.out.println("\n------------------- \n");
 
         contr.endSale();
 
@@ -64,9 +57,13 @@ public class View {
             System.out.println(item.getName() + " : " + item.getQuantity());
         }
     }
-    private void presentRunningTotal(){
-        Amount runningTotal = sale.getRunningTotal();
-        runningTotal.addAmount(sale.getVAT());
-        System.out.println("Running total (inc VAT): " + runningTotal);
+    private void presentSaleInfo(){
+        System.out.println("-------------------");
+        Amount runningTotalIncVAT = sale.getRunningTotalIncVAT();
+        ItemDTO lastAddedItem = sale.getLastAddedItem();
+        System.out.println("Running total (inc VAT): " + runningTotalIncVAT);
+        System.out.println("Last added item name: " + lastAddedItem.getName());
+        System.out.println("Last added item price: " + lastAddedItem.getPriceIncVAT());
+        System.out.println("-------------------\n");
     }
 }

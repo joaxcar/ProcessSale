@@ -28,7 +28,11 @@ public class Amount {
         amount = amount - newAmount.getAmount();
     }
 
-    public void multiplyAmount(int multiplier){
+    public void multiplyAmount(Amount multiplier){
+        amount = amount * multiplier.getAmount();
+    }
+
+    public void multiplyAmount(double multiplier){
         amount = amount * multiplier;
     }
 

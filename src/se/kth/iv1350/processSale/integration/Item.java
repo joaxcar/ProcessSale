@@ -22,23 +22,47 @@ public class Item  implements ItemDTO{
         this.vatRate = vatRate;
     }
 
+    public Item(ItemDTO item){
+        name = item.getName();
+        price = item.getPrice();
+        itemID = item.getItemID();
+        type = item.getType();
+        vatRate = item.getVATRate();
+    }
+
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public Amount getPrice(){
         return new Amount(price);
     }
 
+    @Override
+    public Amount getPriceIncVAT() {
+        double priceIncVAT = price.getAmount() + price.getAmount() * vatRate.getRate();
+        return new Amount(priceIncVAT);
+    }
+
+    @Override
     public VATRate getVATRate(){
         return vatRate;
     }
 
+    @Override
     public String getItemID() {
         return itemID;
     }
 
+    @Override
     public String getType() {
         return type;
+    }
+
+    @Override
+    public int getQuantity() {
+        return 1;
     }
 }

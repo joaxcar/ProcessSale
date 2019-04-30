@@ -8,9 +8,13 @@ public interface ItemDTO {
 
     public Amount getPrice();
 
+    public Amount getPriceIncVAT();
+
     public VATRate getVATRate();
 
     public String getItemID();
 
     public String getType();
+
+    public int getQuantity();
 }

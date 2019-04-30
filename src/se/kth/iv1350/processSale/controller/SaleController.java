@@ -6,7 +6,6 @@ import se.kth.iv1350.processSale.model.*;
 public class SaleController {
 
     private Sale currentSale;
-
     private Payment currentPayment;
     private AccountingSystem accountingSys;
     private CashRegister cashRegister;

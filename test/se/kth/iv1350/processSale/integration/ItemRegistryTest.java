@@ -20,7 +20,18 @@ class ItemRegistryTest {
     void updateInventory() {
     }
 
-    //@Test
+    @Test
     void printList() {
+        ItemRegistry itemRegistry = new ItemRegistry();
+        itemRegistry.printList();
+
+    }
+
+    @Test
+    void itemDTO() {
+        ItemDTO item1 = new Item("GameBoy", new Amount(2000), "0001", "Console", new VATRate(25));
+        ItemDTO item2 = new GroupedItem(item1, 4);
+
+        System.out.println(item2.getQuantity());
     }
 }
