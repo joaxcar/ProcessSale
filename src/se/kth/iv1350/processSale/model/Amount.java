@@ -21,7 +21,7 @@ public class Amount {
     }
 
     public void addAmount(Amount newAmount){
-        amount = amount + newAmount.getAmount();
+        amount += newAmount.getAmount();
     }
 
     public void subtractAmount(Amount newAmount){

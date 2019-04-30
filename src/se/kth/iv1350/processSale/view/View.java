@@ -1,10 +1,8 @@
 package se.kth.iv1350.processSale.view;
 
 import se.kth.iv1350.processSale.controller.SaleController;
-import se.kth.iv1350.processSale.integration.Item;
 import se.kth.iv1350.processSale.integration.ItemDTO;
 import se.kth.iv1350.processSale.model.Amount;
-import se.kth.iv1350.processSale.integration.GroupedItem;
 import se.kth.iv1350.processSale.model.SaleDTO;
 
 import java.util.List;
