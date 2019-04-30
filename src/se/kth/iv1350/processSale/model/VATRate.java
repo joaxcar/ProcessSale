@@ -1,6 +1,4 @@
-package se.kth.iv1350.processSale.integration;
-
-import se.kth.iv1350.processSale.model.Amount;
+package se.kth.iv1350.processSale.model;
 
 public final class VATRate {
 
@@ -15,16 +13,16 @@ public final class VATRate {
         vatRate = VAT_25;
     }
     public VATRate (int vatRate){
-        if(vatRate == VAT_25){
+        if(vatRate == 25){
             this.vatRate = VAT_25;
         }
-        else if(vatRate == VAT_12){
+        else if(vatRate == 12){
             this.vatRate = VAT_12;
         }
-        else if(vatRate == VAT_6){
+        else if(vatRate == 6){
             this.vatRate = VAT_6;
         }
-        else if(vatRate == VAT_FREE){
+        else if(vatRate == 0){
             this.vatRate = VAT_FREE;
         }
         else {

@@ -50,8 +50,7 @@ public class SaleController {
         List<ItemDTO> itemList = currentSale.getItemList();
         int lastIndex = itemList.size() -1;
         if (lastIndex >= 0){
-            ItemDTO lastAddedItem = itemList.get(lastIndex);
-            return lastAddedItem;
+            return itemList.get(lastIndex);
         }
         return new Item();
     }

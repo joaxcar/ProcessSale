@@ -53,8 +53,7 @@ public class ItemRegistry {
     }
 
     public void updateInventory(Sale sale) {
-        Sale payedSale = sale;
-        for (GroupedItem saleItem : payedSale.getGroupedItemList()){
+        for (GroupedItem saleItem : sale.getGroupedItemList()){
             for (GroupedItem inventoryItem : availableItems){
                 if (saleItem.getItemID().equals(inventoryItem.getItemID())){
                     inventoryItem.setQuantity(inventoryItem.getQuantity()-saleItem.getQuantity());

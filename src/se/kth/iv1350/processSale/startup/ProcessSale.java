@@ -34,6 +34,7 @@ public class ProcessSale {
         saleContr = new SaleController (itemReg);
         paymentContr = new PaymentController(accountingSys, cashRegister, log, itemReg);
         view = new View(saleContr, paymentContr);
+
         view.testRun();
     }
 

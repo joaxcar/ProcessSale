@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import se.kth.iv1350.processSale.model.GroupedItem;
 import se.kth.iv1350.processSale.model.Item;
 import se.kth.iv1350.processSale.model.ItemDTO;
+import se.kth.iv1350.processSale.model.VATRate;
 
 import static org.junit.jupiter.api.Assertions.*;
 

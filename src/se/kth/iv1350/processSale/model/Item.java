@@ -1,7 +1,5 @@
 package se.kth.iv1350.processSale.model;
 
-import se.kth.iv1350.processSale.integration.VATRate;
-
 public class Item  implements ItemDTO {
 
     private String name;
@@ -50,8 +48,7 @@ public class Item  implements ItemDTO {
 
     @Override
     public double getPriceIncVAT() {
-        double priceIncVAT = price + price * vatRate.getRate();
-        return priceIncVAT;
+        return price + price * vatRate.getRate();
     }
 
     @Override
@@ -79,7 +76,6 @@ public class Item  implements ItemDTO {
 
     @Override
     public boolean equalItem(ItemDTO item) {
-        boolean equal = itemID.equals(item.getItemID());
-        return  equal;
+        return itemID.equals(item.getItemID());
     }
 }

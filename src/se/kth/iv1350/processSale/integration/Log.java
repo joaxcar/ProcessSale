@@ -4,8 +4,7 @@ import se.kth.iv1350.processSale.model.Sale;
 
 public class Log {
 
-    public Log Log() {
-        return null;
+    public Log() {
     }
 
     public void logEntry(Sale saleToLog) {

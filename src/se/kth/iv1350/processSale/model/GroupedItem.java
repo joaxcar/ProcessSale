@@ -1,7 +1,5 @@
 package se.kth.iv1350.processSale.model;
 
-import se.kth.iv1350.processSale.integration.VATRate;
-
 public class GroupedItem extends Item {
     int quantity;
 

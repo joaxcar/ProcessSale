@@ -40,8 +40,7 @@ public class Sale implements SaleDTO{
      * @return <code>List</code> of items as <code>GroupedItem</code>
      */
     public List<GroupedItem> getGroupedItemList() {
-        List<GroupedItem> itemList = groupItems();
-        return itemList;
+        return groupItems();
     }
 
     private List<GroupedItem> groupItems(){
@@ -77,8 +76,8 @@ public class Sale implements SaleDTO{
      */
     @Override
     public List<ItemDTO> getItemList() {
-        List<ItemDTO> itemList = new ArrayList<ItemDTO>(items);
-        return itemList;
+        List<ItemDTO> itemListCopy = new ArrayList<ItemDTO>(items);
+        return itemListCopy;
     }
     /**
      * Returns current total price of items in the <code>Sale</code>

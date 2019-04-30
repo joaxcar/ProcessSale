@@ -3,19 +3,17 @@ package se.kth.iv1350.processSale.controller;
 import se.kth.iv1350.processSale.integration.AccountingSystem;
 import se.kth.iv1350.processSale.integration.ItemRegistry;
 import se.kth.iv1350.processSale.integration.Log;
-import se.kth.iv1350.processSale.model.Cash;
-import se.kth.iv1350.processSale.model.CashRegister;
-import se.kth.iv1350.processSale.model.Sale;
-import se.kth.iv1350.processSale.model.SaleDTO;
+import se.kth.iv1350.processSale.model.*;
 
 public class PaymentController {
 
     private Sale sale;
+    private Reciept reciept;
     private AccountingSystem accountingSys;
     private CashRegister cashRegister;
     private Log log;
     private boolean paymentDone;
-    private Cash amountPayed;
+    private Cash payment;
     private ItemRegistry itemReg;
 
     /**
@@ -50,13 +48,12 @@ public class PaymentController {
         this.sale = sale;
     }
 
-    //public void makePayment(Cash payment) {
-        //amountPayed.addAmount(payment);
-////
-        //if (amountPayed.getAmount() > sale.getRunningTotalIncVAT().getAmount()){
-            //paymentDone = true;
-        //}
-    //}
+    public void makePayment(Cash payment) {
+        payment.addCash(payment);
+        if (payment.getAmount() > getTotalPriceIncVAT()){
+            paymentDone = true;
+        }
+    }
 
     public boolean checkPaymentDone(){
         return paymentDone;
@@ -77,20 +74,20 @@ public class PaymentController {
     }
 
 
-    //  public Amount getAmountPayed(){
-        //return new Amount(amountPayed);
-    //}
-//
-    //public Amount getChange(){
-        //Amount change = new Amount(amountPayed);
-        //change.subtractAmount(sale.getRunningTotalIncVAT());
-        //return change;
-    //}
-//
-    ////public void endPayment(){
-        //log.logEntry(sale);
-        //cashRegister.addCash(amountPayed);
-        //cashRegister.withdrawCash(getChange());
+    public double getAmountPayed(){
+        return payment.getAmount();
+    }
 
-    //}
+    public Cash getChange(){
+        Cash change = new Cash(sale.getRunningTotalIncVAT() - payment.getAmount());
+        return change;
+    }
+
+    public void endPayment(){
+        if(paymentDone){
+            reciept = new Reciept(sale, payment, getChange(), cashRegister.getRegisterID());
+            cashRegister.addCash(payment);
+            cashRegister.withdrawCash(getChange());
+        }
+    }
 }

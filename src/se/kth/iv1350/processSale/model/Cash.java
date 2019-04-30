@@ -23,6 +23,26 @@ public class Cash {
         this.one = one;
         this.quarter = quarter;
     }
+
+    public Cash(double amount){
+        thousand = (int) (amount % 1000);
+        amount = amount / 1000;
+        fiveHundred = (int) (amount % 500);
+        amount = amount / 500;
+        hundred = (int) (amount % 100);
+        amount = amount / 100;
+        fifty = (int) (amount % 50);
+        amount = amount / 50;
+        twenty = (int) (amount % 20);
+        amount = amount / 20;
+        ten = (int) (amount % 10);
+        amount = amount / 10;
+        five = (int) (amount % 5);
+        amount = amount / 5;
+        one = (int) (amount % 1);
+        amount = amount / 1;
+        quarter = (int) (amount % 0.25);
+    }
     public Cash(){
         thousand = 0;
         fiveHundred = 0;
@@ -36,8 +56,7 @@ public class Cash {
     }
 
     private double sum(){
-        double sum = thousand + fiveHundred + hundred + fifty + twenty + ten + five + one + (quarter * 0.25);
-        return sum;
+        return thousand + fiveHundred + hundred + fifty + twenty + ten + five + one + (quarter * 0.25);
     }
     public String toString(){
         return Double.toString(sum());
