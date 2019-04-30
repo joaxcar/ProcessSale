@@ -3,9 +3,8 @@ package se.kth.iv1350.processSale.model;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
- * This class handles sale requests.
+ * This class keeps a list of ItemDTOs representing a sale
  */
 public class Sale implements SaleDTO{
     private List<ItemDTO> items;
@@ -17,6 +16,10 @@ public class Sale implements SaleDTO{
         items = new ArrayList<ItemDTO>();
     }
 
+    /**
+     * Add item to sale
+     * @param newItem <code>ItemDTO</code> to add to item list
+     */
     public void addItem(ItemDTO newItem) {
         items.add(newItem);
     }
@@ -33,7 +36,6 @@ public class Sale implements SaleDTO{
         }
     }
 
-
     /**
      * Returns a copy of the current list of items in <code>Sale</code>
      *
@@ -43,9 +45,13 @@ public class Sale implements SaleDTO{
         return groupItems();
     }
 
+    /*
+     * Convert list of items to grouped items
+     */
     private List<GroupedItem> groupItems(){
         List<GroupedItem> groupedList = new ArrayList<GroupedItem>();
         int noItemFound = -1;
+
         for (ItemDTO item : items){
             int groupIndex = findItemInList(item,groupedList);
             if (groupIndex != noItemFound){
@@ -58,6 +64,9 @@ public class Sale implements SaleDTO{
         return groupedList;
     }
 
+    /*
+     * Check if ItemDTO is in list of GroupedItems. return index to found item
+     */
     private static int findItemInList(ItemDTO item, List<GroupedItem> groupedItems){
         int noItemFound = -1;
         for (GroupedItem group : groupedItems){
@@ -79,6 +88,21 @@ public class Sale implements SaleDTO{
         List<ItemDTO> itemListCopy = new ArrayList<ItemDTO>(items);
         return itemListCopy;
     }
+
+    /**
+     * Returns last added item from <code>Sale</code> item list
+     *
+     * @return <code>ItemDTO</code> of last added item
+     */
+    @Override
+    public ItemDTO getLastAddedItem(){
+        int lastIndex = items.size() -1;
+        if (lastIndex >= 0){
+            return items.get(lastIndex);
+        }
+        return new Item();
+    }
+
     /**
      * Returns current total price of items in the <code>Sale</code>
      *
@@ -118,13 +142,4 @@ public class Sale implements SaleDTO{
         totalIncVAT += getVAT();
         return totalIncVAT;
     }
-
-    public ItemDTO getLastAddedItem(){
-        int lastIndex = items.size() -1;
-        if (lastIndex >= 0){
-            return items.get(lastIndex);
-        }
-        return new Item();
-    }
-
 }

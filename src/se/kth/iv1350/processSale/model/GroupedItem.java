@@ -20,6 +20,7 @@ public class GroupedItem extends Item {
         super(item);
         quantity = 1;
     }
+
     /**
      * Increments quantity of <code>GroupedItem</code>
      */
