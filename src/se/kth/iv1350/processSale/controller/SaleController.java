@@ -46,7 +46,7 @@ public class SaleController {
         if (currentPayment.checkPaymentDone()){
             currentPayment.endPayment();
             accountingSys.makeEntry(currentPayment);
-            itemReg.updateInventory(currentPayment.getSale().getItemList());
+            itemReg.updateInventory(currentPayment);
             currentPayment = null;
         }
 

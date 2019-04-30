@@ -1,6 +1,7 @@
 package se.kth.iv1350.processSale.model;
 
 import se.kth.iv1350.processSale.integration.GroupedItem;
+import se.kth.iv1350.processSale.integration.Item;
 import se.kth.iv1350.processSale.integration.ItemDTO;
 
 import java.util.ArrayList;
@@ -58,10 +59,15 @@ public class Sale implements SaleDTO{
 
 
     @Override
-    public GroupedItem getLastAddedItem() {
+    public ItemDTO getLastAddedItem() {
         int itemIndex = itemInList(lastAddedItem);
-        GroupedItem lastAddedGroupedItem = items.get(itemIndex);
-        return lastAddedGroupedItem;
+        int notInList = -1;
+        if(itemIndex != notInList) {
+            GroupedItem lastAddedGroupedItem = items.get(itemIndex);
+            return lastAddedGroupedItem;
+        }
+        ItemDTO emptyItem = new GroupedItem();
+        return emptyItem;
     }
 
     @Override
@@ -103,7 +109,12 @@ public class Sale implements SaleDTO{
 	}
 
     @Override
-    public List<GroupedItem> getItemList() {
+    public List<ItemDTO> getItemList() {
+        List<ItemDTO> itemList = new ArrayList<ItemDTO>(items);
+        return itemList;
+    }
+
+    public List<GroupedItem> getGroupedItemList() {
         List<GroupedItem> itemList = new ArrayList<GroupedItem>(items);
         return itemList;
     }

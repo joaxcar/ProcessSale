@@ -53,9 +53,10 @@ public class Payment {
      *
      * @return <code>Sale</code> related to <code>Payment</code>
      */
-    public SaleDTO getSale(){
+    public Sale getSale(){
         return sale;
     }
+
 
     public Amount getAmountPayed(){
         return new Amount(amountPayed);

@@ -2,19 +2,26 @@ package se.kth.iv1350.processSale.integration;
 
 import se.kth.iv1350.processSale.model.Amount;
 
-public class GroupedItem implements ItemDTO {
-    ItemDTO item;
+public class GroupedItem extends Item {
     int quantity;
 
-    public GroupedItem(ItemDTO item){
-        this.item = item;
-        quantity = 1;
-    }
-    public GroupedItem(ItemDTO item, int quantity){
-        this.item = item;
-        this.quantity = quantity;
+    public GroupedItem(){
+        super();
+        quantity = 0;
     }
 
+    public GroupedItem(String name, Amount price, String itemID, String type, VATRate vatRate, int quantity){
+        super( name,  price,  itemID,  type,  vatRate);
+        this.quantity = quantity;
+    }
+    public GroupedItem(ItemDTO item, int quantity){
+        super(item);
+        this.quantity = quantity;
+    }
+    public GroupedItem(ItemDTO item){
+        super(item);
+        quantity = 1;
+    }
     /**
      * Increments quantity of <code>GroupedItem</code>
      */
@@ -29,20 +36,13 @@ public class GroupedItem implements ItemDTO {
         quantity -= 1;
     }
 
-    /**
-     * Returns <code>ItemDTO</code> from <code>GroupedItem</code>
-     *
-     * @return <code>ItemDTO</code> from object
-     */
-    public ItemDTO getItem(){
-        return item;
-    }
 
     /**
      * Returns quantity of <code>GroupedItem</code>
      *
      * @return quantity of item
      */
+    @Override
     public int getQuantity(){
         return quantity;
     }
@@ -57,47 +57,10 @@ public class GroupedItem implements ItemDTO {
     }
 
     public Amount getTotalPrice(){
-        Amount totalPrice = item.getPrice();
-        totalPrice.multiplyAmount(quantity);
+        Amount totalPrice = getPrice();
+        totalPrice.multiplyAmount(new Amount(quantity));
         return totalPrice;
     }
 
-    @Override
-    public String getName() {
-        return item.getName();
-    }
-
-    @Override
-    public Amount getPrice() {
-        return item.getPrice();
-    }
-
-    @Override
-    public Amount getPriceIncVAT() {
-        Amount vat = item.getPrice();
-        vat.multiplyAmount(item.getVATRate().getRate());
-        Amount price = item.getPrice();
-        price.addAmount(new Amount(vat));
-        return price;
-    }
-
-    @Override
-    public VATRate getVATRate() {
-        return item.getVATRate();
-    }
-
-    @Override
-    public String getItemID() {
-        return item.getItemID();
-    }
-
-    @Override
-    public String getType() {
-        return item.getType();
-    }
-
-    public boolean equalItem(ItemDTO item){
-        return this.item.getItemID().equals(item.getItemID());
-    }
-
 }
+

@@ -30,6 +30,14 @@ public class Item  implements ItemDTO{
         vatRate = item.getVATRate();
     }
 
+    public Item() {
+        name = "";
+        price = new Amount(0);
+        itemID = "";
+        type = "";
+        vatRate = new VATRate(0);
+    }
+
     @Override
     public String getName() {
         return name;
@@ -63,6 +71,15 @@ public class Item  implements ItemDTO{
 
     @Override
     public int getQuantity() {
+        if (itemID == ""){
+            return 0;
+        }
         return 1;
+    }
+
+    @Override
+    public boolean equalItem(ItemDTO item) {
+        boolean equal = itemID.equals(item.getItemID());
+        return  equal;
     }
 }

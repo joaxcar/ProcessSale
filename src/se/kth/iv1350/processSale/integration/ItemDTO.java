@@ -17,4 +17,6 @@ public interface ItemDTO {
     public String getType();
 
     public int getQuantity();
+
+    public boolean equalItem(ItemDTO item);
 }

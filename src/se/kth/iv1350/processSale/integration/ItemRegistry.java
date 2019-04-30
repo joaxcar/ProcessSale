@@ -1,6 +1,8 @@
 package se.kth.iv1350.processSale.integration;
 
 import se.kth.iv1350.processSale.model.Amount;
+import se.kth.iv1350.processSale.model.Payment;
+import se.kth.iv1350.processSale.model.Sale;
 import se.kth.iv1350.processSale.model.SaleDTO;
 
 import java.util.ArrayList;
@@ -53,8 +55,9 @@ public class ItemRegistry {
         return null;
     }
 
-    public void updateInventory(List<GroupedItem> items) {
-        for (GroupedItem saleItem : items){
+    public void updateInventory(Payment payment) {
+        Sale payedSale = payment.getSale();
+        for (GroupedItem saleItem : payedSale.getGroupedItemList()){
             for (GroupedItem inventoryItem : availableItems){
                 if (saleItem.getItemID().equals(inventoryItem.getItemID())){
                     inventoryItem.setQuantity(inventoryItem.getQuantity()-saleItem.getQuantity());

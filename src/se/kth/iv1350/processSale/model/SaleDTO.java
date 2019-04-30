@@ -1,12 +1,13 @@
 package se.kth.iv1350.processSale.model;
 
 import se.kth.iv1350.processSale.integration.GroupedItem;
+import se.kth.iv1350.processSale.integration.ItemDTO;
 
 import java.util.List;
 
 public interface SaleDTO {
 
-    GroupedItem getLastAddedItem();
+    ItemDTO getLastAddedItem();
 
     Amount getRunningTotal();
 
@@ -16,5 +17,5 @@ public interface SaleDTO {
 
     int getItemCount();
 
-    List<GroupedItem> getItemList();
+    List<ItemDTO> getItemList();
 }
