@@ -1,19 +1,20 @@
 package se.kth.iv1350.processSale.model;
 import java.util.Date;
+import java.util.List;
 
-public class Reciept {
+public class RecieptDTO {
 
-    public final SaleDTO sale;
+    public final List<GroupedItem> saleItems;
     public final Date date;
     public final Money payment;
     public final Money change;
     public final String registerID;
 
-    public Reciept(SaleDTO sale, Money payment, Money change, String registerID) {
-        this.sale = sale;
+    public RecieptDTO(Sale sale, Money payment, Money change, CashRegister cashReg) {
+        this.saleItems = sale.getGroupedItemList();
         this.payment = payment;
         this.change = change;
-        this.registerID = registerID;
+        this.registerID = cashReg.getRegisterID();
         date = new Date();
     }
 }

@@ -4,9 +4,9 @@ public interface ItemDTO {
 
     String getName();
 
-    double getPrice();
+    Money getPrice();
 
-    double getPriceIncVAT();
+    Money getPriceIncVAT();
 
     VATRate getVATRate();
 

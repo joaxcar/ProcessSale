@@ -4,7 +4,7 @@ public class Item  implements ItemDTO {
 
     private String name;
 
-    private double price;
+    private Money price;
 
     private String itemID;
 
@@ -12,7 +12,7 @@ public class Item  implements ItemDTO {
 
     private VATRate vatRate;
 
-    public Item(String name, double price, String itemID, String type, VATRate vatRate){
+    public Item(String name, Money price, String itemID, String type, VATRate vatRate){
         this.name = name;
         this.price = price;
         this.itemID = itemID;
@@ -30,7 +30,7 @@ public class Item  implements ItemDTO {
 
     public Item() {
         name = "";
-        price = 0.0;
+        price = new Money("0");
         itemID = "";
         type = "";
         vatRate = new VATRate(0);
@@ -42,13 +42,17 @@ public class Item  implements ItemDTO {
     }
 
     @Override
-    public double getPrice(){
+    public Money getPrice(){
         return price;
     }
 
     @Override
-    public double getPriceIncVAT() {
-        return price + price * vatRate.getRate();
+    public Money getPriceIncVAT() {
+        Money priceIncVAT = new Money();
+        Money vatAmount = new Money(Double.toString(vatRate.getRate()));
+        priceIncVAT.add(price);
+        priceIncVAT.add(vatAmount);
+        return priceIncVAT;
     }
 
     @Override

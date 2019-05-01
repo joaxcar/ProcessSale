@@ -8,7 +8,7 @@ public class GroupedItem extends Item {
         quantity = 0;
     }
 
-    public GroupedItem(String name, double price, String itemID, String type, VATRate vatRate, int quantity){
+    public GroupedItem(String name, Money price, String itemID, String type, VATRate vatRate, int quantity){
         super( name,  price,  itemID,  type,  vatRate);
         this.quantity = quantity;
     }
@@ -55,11 +55,6 @@ public class GroupedItem extends Item {
         this.quantity = quantity;
     }
 
-    public double getTotalPrice(){
-        double totalPrice = getPrice();
-        totalPrice = totalPrice * quantity;
-        return totalPrice;
-    }
 
 }
 

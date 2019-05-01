@@ -3,7 +3,7 @@ package se.kth.iv1350.processSale.view;
 import se.kth.iv1350.processSale.controller.PaymentController;
 import se.kth.iv1350.processSale.controller.SaleController;
 import se.kth.iv1350.processSale.model.ItemDTO;
-import se.kth.iv1350.processSale.model.SaleDTO;
+import se.kth.iv1350.processSale.model.SaleStateDTO;
 
 /**
  * This application does not contain a view. This Class serves as a placeholder for a future view.
@@ -12,6 +12,8 @@ public class View {
 
     private SaleController saleContr;
     private PaymentController paymentContr;
+
+    SaleStateDTO currentSale;
 
     /**
      * Create new instance, set given <code>SaleController</code> as sale controller
@@ -30,6 +32,8 @@ public class View {
      */
     public void testRun(){
         saleContr.initializeSale();
+        currentSale = saleContr.getSaleState();
+
         presentSaleInfo();
 
         saleContr.addItemsToSale(1,"0001");
@@ -46,7 +50,7 @@ public class View {
 
         saleContr.endSale(paymentContr);
 
-        System.out.println("Total price (inc VAT): " + paymentContr.getSale().getRunningTotalIncVAT() + "\n");
+        System.out.println("Total price (inc VAT): " + paymentContr.getTotalPriceIncVAT() + "\n");
 
         paymentContr.makePayment("4000");
 
@@ -59,7 +63,7 @@ public class View {
      * Retrieves and prints sale info to terminal
      */
     private void presentSaleInfo(){
-        SaleDTO currentSale = saleContr.getSaleInfo();
+        currentSale = saleContr.getSaleState();
         ItemDTO lastAddedItem = currentSale.getLastAddedItem();
         System.out.println("-------------------");
         System.out.println("Running total (inc VAT): " + currentSale.getRunningTotalIncVAT());

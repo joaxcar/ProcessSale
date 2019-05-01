@@ -23,7 +23,6 @@ public class SaleController {
         if (newItem != null) {
             currentSale.addItem(newItem, quantity);
         }
-
     }
 
     public void endSale(PaymentController paymentContr) {
@@ -31,8 +30,8 @@ public class SaleController {
         currentSale = null;
     }
 
-    public SaleDTO getSaleInfo(){
-        return currentSale;
+    public SaleStateDTO getSaleState(){
+        return currentSale.getSaleState();
     }
 
 }

@@ -1,34 +1,24 @@
 package se.kth.iv1350.processSale.controller;
 
-import se.kth.iv1350.processSale.integration.AccountingSystem;
-import se.kth.iv1350.processSale.integration.ItemRegistry;
-import se.kth.iv1350.processSale.integration.Log;
+import se.kth.iv1350.processSale.integration.ExternalSystems;
 import se.kth.iv1350.processSale.integration.Printer;
-import se.kth.iv1350.processSale.model.*;
+import se.kth.iv1350.processSale.model.CashRegister;
+import se.kth.iv1350.processSale.model.Money;
+import se.kth.iv1350.processSale.model.RecieptDTO;
+import se.kth.iv1350.processSale.model.Sale;
 
 public class PaymentController {
 
-    private Sale sale;
-    private AccountingSystem accountingSys;
-    private CashRegister cashRegister;
-    private Log log;
-    private Money payment;
-    private ItemRegistry itemReg;
+    private final CashRegister cashRegister;
     private Printer printer;
+    private ExternalSystems extSys;
+    private Money payment;
+    private Sale sale;
 
-    /**
-     * Create new instance
-     *
-     * @param accountingSys <code>Sale</code> related to the
-     * @param cashRegister <code>CashRegister</code> to use for payment
-     * @param log <code>Log</code> to use to log sale
-     */
-    public PaymentController(AccountingSystem accountingSys, CashRegister cashRegister, Log log, ItemRegistry itemReg, Printer printer) {
-        this.accountingSys = accountingSys;
+    public PaymentController(CashRegister cashRegister, ExternalSystems extSys, Printer printer){
         this.cashRegister = cashRegister;
-        this.log = log;
-        this.itemReg = itemReg;
         this.printer = printer;
+        this.extSys = extSys;
         payment = new Money("0");
     }
 
@@ -60,44 +50,47 @@ public class PaymentController {
         return paymentDone;
     }
 
-    /**
-     * End current payment if payment is done. Update systems and print reciept
-     */
-    public void endPayment(){
-        if(checkPaymentDone()){
-            Reciept reciept = new Reciept(sale, payment, calculateChange(), cashRegister.getRegisterID());
-            cashRegister.addCash(payment);
-            cashRegister.withdrawCash(calculateChange());
-            accountingSys.makeEntry(reciept);
-            log.logEntry(sale);
-            itemReg.updateInventory(sale);
-            printer.printReciept(reciept);
-            sale = null;
-        }
-    }
-
-    /**
-     * Returns <code>Sale</code> related to payment
-     *
-     * @return <code>Sale</code> related to payment
-     */
-    public SaleDTO getSale(){
-        return sale;
-    }
-
-    public String getAmountPayed(){
-        return payment.toString();
-    }
-
     public String getChange(){
         return calculateChange().toString();
     }
 
     private Money calculateChange(){
-        double totalPrice = sale.getRunningTotalIncVAT();
+        Money totalPrice = sale.getRunningTotalIncVAT();
         Money change = new Money(payment);
-        change.subtract(new Money(Double.toString(totalPrice)));
+        change.subtract(new Money(totalPrice));
         return change;
+    }
+
+    public Money getTotalPriceIncVAT() {
+        return sale.getRunningTotalIncVAT();
+    }
+
+    /**
+     * End current payment if payment is done. Update systems and print reciept
+     */
+    public void endPayment(){
+        if(checkPaymentDone()){
+            updateCashRegister();
+            updateExternalSystems();
+            printReciept();
+            sale = null;
+        }
+    }
+
+    private void updateExternalSystems() {
+        extSys.makeEntry(sale, makeReciept());
+    }
+
+    private void printReciept(){
+        printer.printReciept(makeReciept());
+    }
+    private RecieptDTO makeReciept(){
+        return new RecieptDTO(sale, payment, calculateChange(), cashRegister);
+    }
+
+    private void updateCashRegister(){
+        cashRegister.addCash(payment);
+        cashRegister.withdrawCash(calculateChange());
     }
 
 }

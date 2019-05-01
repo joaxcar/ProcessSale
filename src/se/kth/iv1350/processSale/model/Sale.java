@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * This class keeps a list of ItemDTOs representing a sale
  */
-public class Sale implements SaleDTO{
+public class Sale {
     private List<ItemDTO> items;
 
     /**
@@ -34,6 +34,37 @@ public class Sale implements SaleDTO{
         for (int i = 0; i < quantity; i++){
             addItem(newItem);
         }
+    }
+
+    public SaleStateDTO getSaleState(){
+        SaleStateDTO saleState = new SaleStateDTO(getRunningTotalIncVAT(),getLastAddedItem());
+        return saleState;
+    }
+
+    public Money getRunningTotalIncVAT(){
+        Money runningTotal = new Money();
+        for (ItemDTO item : items){
+            runningTotal.add(item.getPriceIncVAT());
+        }
+        return  runningTotal;
+    }
+
+    private ItemDTO getLastAddedItem(){
+        int lastIndex = items.size() -1;
+        if (lastIndex >= 0){
+            return items.get(lastIndex);
+        }
+        return new Item();
+    }
+
+    /**
+     * Returns a copy of the current list of items in <code>Sale</code>
+     *
+     * @return <code>List</code> of items as <code>ItemDTO</code>
+     */
+    public List<ItemDTO> getItemList() {
+        List<ItemDTO> itemListCopy = new ArrayList<ItemDTO>(items);
+        return itemListCopy;
     }
 
     /**
@@ -78,68 +109,4 @@ public class Sale implements SaleDTO{
         return noItemFound;
     }
 
-    /**
-     * Returns a copy of the current list of items in <code>Sale</code>
-     *
-     * @return <code>List</code> of items as <code>ItemDTO</code>
-     */
-    @Override
-    public List<ItemDTO> getItemList() {
-        List<ItemDTO> itemListCopy = new ArrayList<ItemDTO>(items);
-        return itemListCopy;
-    }
-
-    /**
-     * Returns last added item from <code>Sale</code> item list
-     *
-     * @return <code>ItemDTO</code> of last added item
-     */
-    @Override
-    public ItemDTO getLastAddedItem(){
-        int lastIndex = items.size() -1;
-        if (lastIndex >= 0){
-            return items.get(lastIndex);
-        }
-        return new Item();
-    }
-
-    /**
-     * Returns current total price of items in the <code>Sale</code>
-     *
-     * @return <code>Amount</code> containing total price
-     */
-    public double getRunningTotal() {
-        double runningTotal = 0.0;
-        for (ItemDTO item : items){
-            runningTotal += item.getPrice();
-        }
-        return runningTotal;
-    }
-
-    /**
-     * Returns total VAT of items in the <code>Sale</code>
-     *
-     * @return <code>Amount</code> containing total VAT
-     */
-    public double getVAT() {
-        double vatSum = 0.0;
-        for (ItemDTO item : items){
-            double price = item.getPrice();
-            double vatRate = item.getVATRate().getRate();
-            vatSum += price * vatRate;
-        }
-        return vatSum;
-    }
-
-    /**
-     * Returns current price including VAT of items in <code>Sale</code>
-     *
-     * @return <code>Amount</code> containing total price including VAT
-     */
-    public double getRunningTotalIncVAT() {
-        double totalIncVAT = 0.0;
-        totalIncVAT += getRunningTotal();
-        totalIncVAT += getVAT();
-        return totalIncVAT;
-    }
 }
