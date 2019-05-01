@@ -4,7 +4,7 @@ import se.kth.iv1350.processSale.integration.ExternalSystems;
 import se.kth.iv1350.processSale.integration.Printer;
 import se.kth.iv1350.processSale.model.CashRegister;
 import se.kth.iv1350.processSale.model.Money;
-import se.kth.iv1350.processSale.model.RecieptDTO;
+import se.kth.iv1350.processSale.model.ReceiptDTO;
 import se.kth.iv1350.processSale.model.Sale;
 
 public class PaymentController {
@@ -84,8 +84,8 @@ public class PaymentController {
     private void printReciept(){
         printer.printReciept(makeReciept());
     }
-    private RecieptDTO makeReciept(){
-        return new RecieptDTO(sale, payment, calculateChange(), cashRegister);
+    private ReceiptDTO makeReciept(){
+        return new ReceiptDTO(sale, payment, calculateChange(), cashRegister);
     }
 
     private void updateCashRegister(){

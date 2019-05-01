@@ -1,6 +1,6 @@
 package se.kth.iv1350.processSale.integration;
 
-import se.kth.iv1350.processSale.model.RecieptDTO;
+import se.kth.iv1350.processSale.model.ReceiptDTO;
 import se.kth.iv1350.processSale.model.Sale;
 
 public class ExternalSystems {
@@ -16,13 +16,13 @@ public class ExternalSystems {
         this.log = log;
     }
 
-    public void makeEntry(Sale sale, RecieptDTO reciept) {
+    public void makeEntry(Sale sale, ReceiptDTO reciept) {
         writeAccountingSystem(reciept);
         writeToLog(sale);
         updateItemRegistry(sale);
     }
 
-    private void writeAccountingSystem(RecieptDTO reciept) {
+    private void writeAccountingSystem(ReceiptDTO reciept) {
         accountingSys.makeEntry(reciept);
     }
 
