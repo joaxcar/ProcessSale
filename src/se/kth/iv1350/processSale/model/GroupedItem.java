@@ -80,4 +80,10 @@ public class GroupedItem extends ItemDTO {
     public void setQuantity(int quantity){
         this.quantity = quantity;
     }
+
+    @Override
+    public String toString(){
+        String itemCount = new String(super.getName() + " : " + quantity);
+        return itemCount;
+    }
 }

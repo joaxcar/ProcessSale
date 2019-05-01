@@ -6,6 +6,7 @@ public class ReceiptDTO {
 
     private final List<GroupedItem> saleItems;
     private final Date date;
+    private final Money price;
     private final Money payment;
     private final Money change;
     private final String registerID;
@@ -15,6 +16,7 @@ public class ReceiptDTO {
         this.payment = payment;
         this.change = change;
         this.registerID = cashReg.getRegisterID();
+        this.price = sale.getRunningTotalIncVAT();
         date = new Date();
     }
 
@@ -36,5 +38,21 @@ public class ReceiptDTO {
 
     public String getRegisterID() {
         return registerID;
+    }
+
+    @Override
+    public String toString(){
+        StringBuilder receipt = new StringBuilder();
+        receipt.append("Date: " + date + "\n");
+        receipt.append("Cash register: " + registerID + "\n");
+        receipt.append("------------------------: " + "\n");
+        for (GroupedItem group : saleItems){
+            receipt.append(group.toString() + "\n");
+        }
+        receipt.append("------------------------: " + "\n");
+        receipt.append("Total price: " + price + "\n");
+        receipt.append("Payed: " + payment + "\n");
+        receipt.append("Change: " + change + "\n");
+        return receipt.toString();
     }
 }

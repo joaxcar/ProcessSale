@@ -55,8 +55,6 @@ public class View {
 
         paymentContr.makePayment("4000");
 
-        System.out.println("\nChange: " + paymentContr.getChange());
-
         paymentContr.endPayment();
     }
 
@@ -66,10 +64,9 @@ public class View {
     private void presentSaleInfo(){
         currentSale = saleContr.getSaleState();
         ItemDTO lastAddedItem = currentSale.getLastAddedItem();
-        System.out.println("-------------------");
         System.out.println("Running total (inc VAT): " + currentSale.getRunningTotalIncVAT());
         System.out.println("Last added item name: " + lastAddedItem.getName());
         System.out.println("Last added item price: " + lastAddedItem.getPriceIncVAT());
-        System.out.println("-------------------\n");
+        System.out.println("-------------------");
     }
 }

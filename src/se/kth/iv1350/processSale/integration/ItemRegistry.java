@@ -53,22 +53,6 @@ public class ItemRegistry {
     }
 
     public void updateInventory(Sale sale) {
-        System.out.println("Updating registry items");
-        for (GroupedItem saleItem : sale.getGroupedItemList()){
-            for (GroupedItem inventoryItem : availableItems){
-                if (saleItem.getItemID().equals(inventoryItem.getItemID())){
-                    inventoryItem.setQuantity(inventoryItem.getQuantity()-saleItem.getQuantity());
-                    break;
-                }
-            }
-        }
+        System.out.println("Updating registry items with information from sale");
     }
-
-    public void printList(){
-        System.out.println("Inventory list: ");
-        for (GroupedItem item : availableItems){
-            System.out.println(item.getName() + " : " + item.getQuantity());
-        }
-    }
-
 }

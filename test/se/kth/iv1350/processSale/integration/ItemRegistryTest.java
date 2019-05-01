@@ -20,12 +20,6 @@ class ItemRegistryTest {
     void updateInventory() {
     }
 
-    @Test
-    void printList() {
-        ItemRegistry itemRegistry = new ItemRegistry();
-        itemRegistry.printList();
-
-    }
 
     @Test
     void itemDTO() {

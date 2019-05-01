@@ -2,6 +2,9 @@ package se.kth.iv1350.processSale.integration;
 
 import se.kth.iv1350.processSale.model.ReceiptDTO;
 
+/**
+ * This class works as a placeholder for a real integration to an external accounting system
+ */
 public class AccountingSystem {
     public AccountingSystem(){}
 
