@@ -18,9 +18,9 @@ class SaleTest {
 
     @BeforeEach
     void setup(){
-        item1 = new Item("GameBoy", new Money("2000"), "0001", "Console", new VATRate(25));
-        item2 = new Item("Tetris", new Money("340"), "0002", "Game",new VATRate(12));
-        item3 = new Item();
+        item1 = new ItemDTO("GameBoy", new Money("2000"), "0001", "Console", new VATRate(25));
+        item2 = new ItemDTO("Tetris", new Money("340"), "0002", "Game",new VATRate(12));
+        item3 = new ItemDTO();
         sale = new Sale();
     }
 
@@ -66,7 +66,7 @@ class SaleTest {
         ItemDTO testItem = testSaleState.getLastAddedItem();
 
         Money goodMoney = new Money();
-        ItemDTO goodItem = new Item();
+        ItemDTO goodItem = new ItemDTO();
 
         assertEquals(goodMoney.toString(), testMoney.toString(), "Money is not the default Money");
         assertEquals(goodItem.getItemID(), testItem.getItemID(), "Item is not the default Item");

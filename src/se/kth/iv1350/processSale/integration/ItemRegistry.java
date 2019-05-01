@@ -22,12 +22,12 @@ public class ItemRegistry {
      * Adds items to availableItems list
      */
     private void addItems() {
-        ItemDTO item1 = new Item("GameBoy", new Money("2000"), "0001", "Console", new VATRate(25));
-        ItemDTO item2 = new Item("Tetris", new Money("340"), "0002", "Game",new VATRate(12));
-        ItemDTO item3 = new Item("Super Mario 2", new Money("290"), "0003", "Game",new VATRate(25));
-        ItemDTO item4 = new Item("Mario figure", new Money("96"), "0004", "Collectable",new VATRate(12));
-        ItemDTO item5 = new Item("Zelda", new Money("300"), "0005", "Game",new VATRate(12));
-        ItemDTO item6 = new Item("AAA batteries", new Money("25"), "0006", "Misc",new VATRate(6));
+        ItemDTO item1 = new ItemDTO("GameBoy", new Money("2000"), "0001", "Console", new VATRate(25));
+        ItemDTO item2 = new ItemDTO("Tetris", new Money("340"), "0002", "Game",new VATRate(12));
+        ItemDTO item3 = new ItemDTO("Super Mario 2", new Money("290"), "0003", "Game",new VATRate(25));
+        ItemDTO item4 = new ItemDTO("Mario figure", new Money("96"), "0004", "Collectable",new VATRate(12));
+        ItemDTO item5 = new ItemDTO("Zelda", new Money("300"), "0005", "Game",new VATRate(12));
+        ItemDTO item6 = new ItemDTO("AAA batteries", new Money("25"), "0006", "Misc",new VATRate(6));
 
         availableItems.add(new GroupedItem(item1, 4));
         availableItems.add(new GroupedItem(item2, 3));

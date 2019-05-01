@@ -10,7 +10,7 @@ class ItemRegistryTest {
     @Test
     void searchItem() {
         ItemRegistry itemRegistry = new ItemRegistry();
-        ItemDTO item = new Item("GameBoy", new Money("2000"), "0001", "Console", new VATRate(25));
+        ItemDTO item = new ItemDTO("GameBoy", new Money("2000"), "0001", "Console", new VATRate(25));
         ItemDTO foundItem = itemRegistry.searchItem("0001");
 
         assertEquals(item.getItemID(), foundItem.getItemID());
@@ -29,9 +29,5 @@ class ItemRegistryTest {
 
     @Test
     void itemDTO() {
-        ItemDTO item1 = new Item("GameBoy", new Money("2000"), "0001", "Console", new VATRate(25));
-        ItemDTO item2 = new GroupedItem(item1, 4);
-
-        System.out.println(item2.getQuantity());
     }
 }

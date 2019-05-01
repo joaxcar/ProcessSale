@@ -54,7 +54,7 @@ public class Sale {
         if (lastIndex >= 0){
             return items.get(lastIndex);
         }
-        return new Item();
+        return new ItemDTO();
     }
 
     /**

@@ -1,6 +1,6 @@
 package se.kth.iv1350.processSale.model;
 
-public class GroupedItem extends Item {
+public class GroupedItem extends ItemDTO {
     private int quantity;
 
     public GroupedItem(){
@@ -41,7 +41,6 @@ public class GroupedItem extends Item {
      *
      * @return quantity of item
      */
-    @Override
     public int getQuantity(){
         return quantity;
     }
