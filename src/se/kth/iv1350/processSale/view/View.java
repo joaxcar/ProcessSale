@@ -50,7 +50,8 @@ public class View {
 
         saleContr.endSale(paymentContr);
 
-        System.out.println("Total price (inc VAT): " + paymentContr.getTotalPriceIncVAT() + "\n");
+        currentSale = paymentContr.getFinalSaleState();
+        System.out.println("Total price (inc VAT): " + currentSale.getRunningTotalIncVAT() + "\n");
 
         paymentContr.makePayment("4000");
 

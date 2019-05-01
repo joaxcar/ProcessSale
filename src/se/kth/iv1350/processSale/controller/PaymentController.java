@@ -2,19 +2,25 @@ package se.kth.iv1350.processSale.controller;
 
 import se.kth.iv1350.processSale.integration.ExternalSystems;
 import se.kth.iv1350.processSale.integration.Printer;
-import se.kth.iv1350.processSale.model.CashRegister;
-import se.kth.iv1350.processSale.model.Money;
-import se.kth.iv1350.processSale.model.ReceiptDTO;
-import se.kth.iv1350.processSale.model.Sale;
+import se.kth.iv1350.processSale.model.*;
 
+/**
+ * This class handles requests from view classes concerning payments. To make payments a <code>Sale</code> object needs
+ * to be provided
+ */
 public class PaymentController {
-
-    private final CashRegister cashRegister;
+    private CashRegister cashRegister;
     private Printer printer;
     private ExternalSystems extSys;
     private Money payment;
     private Sale sale;
 
+    /**
+     * Creates new intance of <code>PaymentController</code>
+     * @param cashRegister <code>CashRegister</code> to be used by the controller
+     * @param extSys <code>ExternalSystems</code> to be used by the controller
+     * @param printer <code>Printer</code> to be used by the controller
+     */
     public PaymentController(CashRegister cashRegister, ExternalSystems extSys, Printer printer){
         this.cashRegister = cashRegister;
         this.printer = printer;
@@ -32,7 +38,7 @@ public class PaymentController {
     }
 
     /**
-     * Add amount to <code>Payment</code>
+     * Add amount to payment, converts from <code>String</code> to <code>Money</code>
      *
      * @param payment Amount to be added
      */
@@ -50,10 +56,18 @@ public class PaymentController {
         return paymentDone;
     }
 
+    /**
+     * Returns change as a <code>String</code>
+     *
+     * @return <code>String</code> of amount
+     */
     public String getChange(){
         return calculateChange().toString();
     }
 
+    /*
+     * Calculates change based on payment and total price
+     */
     private Money calculateChange(){
         Money totalPrice = sale.getRunningTotalIncVAT();
         Money change = new Money(payment);
@@ -61,8 +75,13 @@ public class PaymentController {
         return change;
     }
 
-    public Money getTotalPriceIncVAT() {
-        return sale.getRunningTotalIncVAT();
+    /**
+     * Returns final state of the sale being handled
+     *
+     * @return <code>SaleStateDTO</code> from sale
+     */
+    public SaleStateDTO getFinalSaleState(){
+        return sale.getSaleState();
     }
 
     /**
@@ -76,6 +95,11 @@ public class PaymentController {
             sale = null;
         }
     }
+
+
+    /*
+     * private helper functions for connection with external systems
+     */
 
     private void updateExternalSystems() {
         extSys.makeEntry(sale, makeReciept());
@@ -92,5 +116,4 @@ public class PaymentController {
         cashRegister.addCash(payment);
         cashRegister.withdrawCash(calculateChange());
     }
-
 }
