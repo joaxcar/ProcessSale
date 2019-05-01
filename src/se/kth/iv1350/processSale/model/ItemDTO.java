@@ -1,4 +1,5 @@
 package se.kth.iv1350.processSale.model;
+import java.util.Objects;
 
 public interface ItemDTO {
 
@@ -16,5 +17,4 @@ public interface ItemDTO {
 
     int getQuantity();
 
-    boolean equalItem(ItemDTO item);
 }

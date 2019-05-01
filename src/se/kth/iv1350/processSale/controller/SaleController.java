@@ -1,8 +1,10 @@
 package se.kth.iv1350.processSale.controller;
 
-import se.kth.iv1350.processSale.integration.*;
-import se.kth.iv1350.processSale.model.*;
 
+import se.kth.iv1350.processSale.integration.ItemRegistry;
+import se.kth.iv1350.processSale.model.ItemDTO;
+import se.kth.iv1350.processSale.model.Sale;
+import se.kth.iv1350.processSale.model.SaleStateDTO;
 
 public class SaleController {
 

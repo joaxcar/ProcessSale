@@ -88,9 +88,10 @@ public class Sale {
             if (groupIndex != noItemFound){
                 GroupedItem foundGroup = groupedList.get(groupIndex);
                 foundGroup.incrementQuantity();
-                break;
             }
-            groupedList.add(new GroupedItem(item));
+            else {
+                groupedList.add(new GroupedItem(item));
+            }
         }
         return groupedList;
     }

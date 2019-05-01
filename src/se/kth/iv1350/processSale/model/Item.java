@@ -20,10 +20,12 @@ public class Item  implements ItemDTO {
         this.vatRate = vatRate;
     }
 
+
     public Item(ItemDTO item){
         name = item.getName();
         price = item.getPrice();
         itemID = item.getItemID();
+
         type = item.getType();
         vatRate = item.getVATRate();
     }
@@ -78,8 +80,8 @@ public class Item  implements ItemDTO {
         return 1;
     }
 
-    @Override
     public boolean equalItem(ItemDTO item) {
         return itemID.equals(item.getItemID());
     }
+
 }

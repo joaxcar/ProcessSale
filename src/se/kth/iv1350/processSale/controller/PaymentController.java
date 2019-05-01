@@ -19,7 +19,7 @@ public class PaymentController {
         this.cashRegister = cashRegister;
         this.printer = printer;
         this.extSys = extSys;
-        payment = new Money("0");
+        payment = new Money();
     }
 
     /**
