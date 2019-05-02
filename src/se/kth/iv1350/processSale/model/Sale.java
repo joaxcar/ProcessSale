@@ -36,11 +36,21 @@ public class Sale {
         }
     }
 
+    /**
+     * Returns a <code>SaleStateDTO</code> containing information of the sale
+     *
+     * @return <code>SaleStateDTO</code> with current sale info
+     */
     public SaleStateDTO getSaleState(){
         SaleStateDTO saleState = new SaleStateDTO(getRunningTotalIncVAT(),getLastAddedItem());
         return saleState;
     }
 
+    /**
+     * Returns sum of prices from current item list
+     *
+     * @return current total price
+     */
     public Money getRunningTotalIncVAT(){
         Money runningTotal = new Money();
         for (ItemDTO item : items){
@@ -49,6 +59,7 @@ public class Sale {
         return  runningTotal;
     }
 
+    // returns item last added to sale
     private ItemDTO getLastAddedItem(){
         int lastIndex = items.size() -1;
         if (lastIndex >= 0){

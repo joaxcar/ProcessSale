@@ -1,5 +1,9 @@
 package se.kth.iv1350.processSale.model;
 
+/**
+ * This class holds a VAT rate
+ * VAT rates are stored as one of accepted values
+ */
 public final class VATRate {
 
     private static final double VAT_25 = 0.25;
@@ -9,9 +13,17 @@ public final class VATRate {
 
     private final double vatRate;
 
+    /**
+     * Create new instance of <code>VATRate</code>, set rate to highest
+     */
     public VATRate (){
         vatRate = VAT_25;
     }
+
+    /**
+     * Create new instance of <code>VATRate</code>, set rate to given or highest
+     * @param vatRate
+     */
     public VATRate (int vatRate){
         if(vatRate == 25){
             this.vatRate = VAT_25;
@@ -30,8 +42,12 @@ public final class VATRate {
         }
     }
 
+    /**
+     * Returns VAT rate
+     *
+     * @return rate
+     */
     public double getRate(){
         return vatRate;
     }
-
 }
