@@ -1,6 +1,10 @@
 package se.kth.iv1350.processSale.integration;
 
-import se.kth.iv1350.processSale.model.*;
+
+import se.kth.iv1350.processSale.model.GroupedItem;
+import se.kth.iv1350.processSale.model.ItemDTO;
+import se.kth.iv1350.processSale.model.Money;
+import se.kth.iv1350.processSale.model.VATRate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +56,12 @@ public class ItemRegistry {
         return null;
     }
 
-    public void updateInventory(Sale sale) {
+    /**
+     * Removes specified items from inventory
+     *
+     * @param items <code>List</code> of <code>GroupedItem</code> to remove from inventory
+     */
+    public void subtractFromInventory(List<GroupedItem> items) {
         System.out.println("Updating registry items with information from sale");
     }
 }

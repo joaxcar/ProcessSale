@@ -7,9 +7,16 @@ import se.kth.iv1350.processSale.model.ReceiptDTO;
  */
 public class Printer {
 
-    public Printer(){
-    }
+    /**
+     * Create new instance of <code>Printer</code>
+     */
+    public Printer(){}
 
+    /**
+     * Ask external printer to print receipt
+     *
+     * @param receipt <code>Receipt</code> to print
+     */
     public void printReciept(ReceiptDTO receipt){
         System.out.println("\nPrintout of receipt: ");
         System.out.println(receipt.toString());

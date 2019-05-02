@@ -81,6 +81,11 @@ public class GroupedItem extends ItemDTO {
         this.quantity = quantity;
     }
 
+    /**
+     * Get gouped item as a <code>String</code>
+     *
+     * @return <code>String</code> representing item and quantity
+     */
     @Override
     public String toString(){
         String itemCount = new String(super.getName() + " : " + quantity);
