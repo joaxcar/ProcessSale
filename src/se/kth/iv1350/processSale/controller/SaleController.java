@@ -1,6 +1,7 @@
 package se.kth.iv1350.processSale.controller;
 
 import se.kth.iv1350.processSale.integration.ItemRegistry;
+import se.kth.iv1350.processSale.integration.NoItemFoundException;
 import se.kth.iv1350.processSale.model.ItemDTO;
 import se.kth.iv1350.processSale.model.Sale;
 import se.kth.iv1350.processSale.model.SaleStateDTO;
@@ -36,10 +37,13 @@ public class SaleController {
      * @param itemID itemID to search for
      */
     public void addItemsToSale(int quantity, String itemID) {
-        ItemDTO newItem = itemReg.searchItem(itemID);
 
-        if (newItem != null) {
+        try {
+            ItemDTO newItem = itemReg.searchItem(itemID);
             currentSale.addItem(newItem, quantity);
+        }
+        catch (NoItemFoundException ex){
+
         }
     }
 

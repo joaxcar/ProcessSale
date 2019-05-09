@@ -15,4 +15,8 @@ public class NoItemFoundException extends Exception {
         super("No item in registry matching itemID: " + searchedItemID);
         this.searchedItemID = searchedItemID;
     }
+
+    public String getSearchedItemID(){
+        return searchedItemID;
+    }
 }
