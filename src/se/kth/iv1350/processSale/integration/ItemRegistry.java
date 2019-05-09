@@ -46,14 +46,15 @@ public class ItemRegistry {
      *
      * @param searchedID String to match against <code>ItemDTO</code> ID
      * @return matching <code>ItemDTO</code> if found otherwise null
+     * @throws NoItemFoundException if no item is found
      */
-    public ItemDTO searchItem(String searchedID) {
+    public ItemDTO searchItem(String searchedID) throws NoItemFoundException{
         for (ItemDTO item : availableItems){
             if (item.getItemID().equals(searchedID)){
                 return item;
             }
         }
-        return null;
+        throw new NoItemFoundException(searchedID);
     }
 
     /**
