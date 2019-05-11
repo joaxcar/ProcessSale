@@ -6,6 +6,9 @@ import se.kth.iv1350.processSale.model.ItemDTO;
 import se.kth.iv1350.processSale.model.Sale;
 import se.kth.iv1350.processSale.model.SaleStateDTO;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
 /**
  * This class handles requests from view classes concerning sale objects
  */
@@ -35,16 +38,16 @@ public class SaleController {
      *
      * @param quantity Quantity of items to be added
      * @param itemID itemID to search for
+     * @throws NoItemFoundException when search in item registry fails
      */
-    public void addItemsToSale(int quantity, String itemID) {
-
-        try {
-            ItemDTO newItem = itemReg.searchItem(itemID);
-            currentSale.addItem(newItem, quantity);
-        }
-        catch (NoItemFoundException ex){
-
-        }
+    public void addItemsToSale(int quantity, String itemID) throws NoItemFoundException, OperationFailedException {
+            try {
+                ItemDTO newItem = itemReg.searchItem(itemID);
+                currentSale.addItem(newItem, quantity);
+            }
+            catch (SQLException sqle){
+                throw new OperationFailedException("Failed to add item to sale", sqle);
+            }
     }
 
     /**

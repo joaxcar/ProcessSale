@@ -1,7 +1,9 @@
 package se.kth.iv1350.processSale.view;
 
+import se.kth.iv1350.processSale.controller.OperationFailedException;
 import se.kth.iv1350.processSale.controller.PaymentController;
 import se.kth.iv1350.processSale.controller.SaleController;
+import se.kth.iv1350.processSale.integration.NoItemFoundException;
 import se.kth.iv1350.processSale.model.ItemDTO;
 import se.kth.iv1350.processSale.model.SaleStateDTO;
 
@@ -10,6 +12,7 @@ import se.kth.iv1350.processSale.model.SaleStateDTO;
  */
 public class View {
 
+    private ErrorMessageHandler errorMsgHandler = new ErrorMessageHandler();
     private SaleController saleContr;
     private PaymentController paymentContr;
 
@@ -36,16 +39,22 @@ public class View {
 
         presentSaleInfo();
 
-        saleContr.addItemsToSale(1,"0001");
+        addItems(1,"0001");
         presentSaleInfo();
 
-        saleContr.addItemsToSale(2,"0004");
+        addItems(4,"000");
         presentSaleInfo();
 
-        saleContr.addItemsToSale(1,"0002");
+        addItems(2,"0004");
         presentSaleInfo();
 
-        saleContr.addItemsToSale(4,"0006");
+        addItems(1,"0002");
+        presentSaleInfo();
+
+        addItems(4,"0006");
+        presentSaleInfo();
+
+        addItems(4,"0000");
         presentSaleInfo();
 
         saleContr.endSale(paymentContr);
@@ -56,6 +65,22 @@ public class View {
         paymentContr.makePayment("4000");
 
         paymentContr.endPayment();
+    }
+
+    /*
+     * Try to add an item to sale
+     */
+    private void addItems(int quantity, String itemID){
+        try{
+            saleContr.addItemsToSale(quantity,itemID);
+        }
+        catch (NoItemFoundException ex){
+            errorMsgHandler.printErrorMessage("No item with ID " + ex.getSearchedItemID());
+        }
+        catch (OperationFailedException ex){
+            errorMsgHandler.printErrorMessage(ex.getMessage());
+        }
+
     }
 
     /*

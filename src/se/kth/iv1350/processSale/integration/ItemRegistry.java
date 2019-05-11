@@ -6,6 +6,7 @@ import se.kth.iv1350.processSale.model.ItemDTO;
 import se.kth.iv1350.processSale.model.Money;
 import se.kth.iv1350.processSale.model.VATRate;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,8 +48,13 @@ public class ItemRegistry {
      * @param searchedID String to match against <code>ItemDTO</code> ID
      * @return matching <code>ItemDTO</code> if found otherwise null
      * @throws NoItemFoundException if no item is found
+     * @throws SQLException if database error occurs
      */
-    public ItemDTO searchItem(String searchedID) throws NoItemFoundException{
+    public ItemDTO searchItem(String searchedID) throws NoItemFoundException, SQLException {
+        // This is part of seminar 4, hardcoded failure to simulate database error
+        if (searchedID == "0000"){
+            throw new SQLException("SQL error");
+        }
         for (ItemDTO item : availableItems){
             if (item.getItemID().equals(searchedID)){
                 return item;
