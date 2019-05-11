@@ -6,6 +6,8 @@ import se.kth.iv1350.processSale.integration.*;
 import se.kth.iv1350.processSale.model.CashRegister;
 import se.kth.iv1350.processSale.view.View;
 
+import java.io.IOException;
+
 /**
  * Contains the <code>main</code> method. Responsible for getting the application started
  */
@@ -17,18 +19,24 @@ public class ProcessSale {
      * @param args The application does not take any arguments
      */
     public static void main(String[] args) {
-        AccountingSystem accountingSys = new AccountingSystem();
-        CashRegister cashRegister = new CashRegister("Register 1");
-        Log log = new Log();
-        Printer printer = new Printer();
-        ItemRegistry itemReg = new ItemRegistry();
+        try{
+            AccountingSystem accountingSys = new AccountingSystem();
+            CashRegister cashRegister = new CashRegister("Register 1");
+            Log log = new Log();
+            Printer printer = new Printer();
+            ItemRegistry itemReg = new ItemRegistry();
 
-        ExternalSystems extSys = new ExternalSystems(itemReg, accountingSys, log);
-        SaleController saleContr = new SaleController (itemReg);
-        PaymentController paymentContr = new PaymentController(cashRegister, extSys, printer);
-        View view = new View(saleContr, paymentContr);
+            ExternalSystems extSys = new ExternalSystems(itemReg, accountingSys);
+            SaleController saleContr = new SaleController (itemReg, log);
+            PaymentController paymentContr = new PaymentController(cashRegister, extSys, printer);
+            View view = new View(saleContr, paymentContr);
+            view.testRun();
+        }
+        catch (IOException ioe){
+            System.out.println("Failed to initialize program");
+            System.out.println(ioe.getStackTrace());
+        }
 
-        view.testRun();
     }
 
 }

@@ -1,23 +1,47 @@
 package se.kth.iv1350.processSale.integration;
 
-import se.kth.iv1350.processSale.model.Sale;
+import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
- * This class handles logging to an external log system
+ * This class handles logging to a file
  */
 public class Log {
+    private static String FILE_NAME = "processController_logfile.txt";
+
+    SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
+    File logFile;
 
     /**
-     * Create new instance of <code>Log</code>
+     * Create new instance of <code>Log</code>, removes old logfile and creates a new
      */
-    public Log() {}
+    public Log() throws IOException{
+        logFile = new File(FILE_NAME);
+        if(logFile.exists()){
+            logFile.delete();
+        }
+        logFile.createNewFile();
+    }
 
     /**
      * Log information from sale in external log system
      *
-     * @param saleToLog <code>Sale</code> object to log
+     * @param message message to log
      */
-    public void logEntry(Sale saleToLog) {
-        System.out.println("Making log entry for sale");
+    public void logEntry(String message) throws IOException{
+        BufferedWriter writer = new BufferedWriter(new FileWriter(logFile,true));
+        Date timeStamp = new Date();
+        String dateString = formater.format(timeStamp.getTime());
+
+        StringBuilder logEntry = new StringBuilder();
+        logEntry.append(dateString);
+        logEntry.append(": ");
+        logEntry.append(message);
+
+        writer.write(logEntry.toString());
+        writer.newLine();
+        writer.flush();
+        writer.close();
     }
 }

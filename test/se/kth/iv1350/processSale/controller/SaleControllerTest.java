@@ -4,9 +4,12 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import se.kth.iv1350.processSale.integration.ItemRegistry;
+import se.kth.iv1350.processSale.integration.Log;
 import se.kth.iv1350.processSale.model.ItemDTO;
 import se.kth.iv1350.processSale.model.Sale;
 import se.kth.iv1350.processSale.model.SaleStateDTO;
+
+import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,12 +17,14 @@ class SaleControllerTest {
 
     ItemRegistry itemReg;
     SaleController testController;
+    Log log;
     Sale testSale;
 
     @BeforeEach
-    void setup(){
+    void setup() throws IOException {
         itemReg = new ItemRegistry();
-        testController = new SaleController(itemReg);
+        log = new Log();
+        testController = new SaleController(itemReg, log);
         testController.initializeSale();
         testSale = new Sale();
     }
