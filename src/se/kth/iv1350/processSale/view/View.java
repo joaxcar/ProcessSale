@@ -28,6 +28,7 @@ public class View {
     public View(SaleController saleContr, PaymentController paymentContr) {
         this.saleContr = saleContr;
         this.paymentContr = paymentContr;
+        this.paymentContr.addObserver(new TotalRevenueView());
     }
 
     /**
@@ -63,6 +64,32 @@ public class View {
         System.out.println("Total price (inc VAT): " + currentSale.getRunningTotalIncVAT() + "\n");
 
         paymentContr.makePayment("4000");
+
+        paymentContr.endPayment();
+
+        saleContr.initializeSale();
+        currentSale = saleContr.getSaleState();
+
+        presentSaleInfo();
+
+        addItems(1,"0001");
+        presentSaleInfo();
+
+        addItems(1,"000");
+        presentSaleInfo();
+
+        addItems(2,"0004");
+        presentSaleInfo();
+
+        addItems(4,"0002");
+        presentSaleInfo();
+
+        saleContr.endSale(paymentContr);
+
+        currentSale = paymentContr.getFinalSaleState();
+        System.out.println("Total price (inc VAT): " + currentSale.getRunningTotalIncVAT() + "\n");
+
+        paymentContr.makePayment("23000");
 
         paymentContr.endPayment();
     }

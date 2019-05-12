@@ -49,10 +49,10 @@ class SaleControllerTest {
     }
 
     @Test
-    void endSale() {
+    void testEndSale() {
     }
 
     @Test
-    void getSaleState() {
+    void testGetSaleState() {
     }
 }

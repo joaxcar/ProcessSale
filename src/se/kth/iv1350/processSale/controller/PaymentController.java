@@ -4,6 +4,9 @@ import se.kth.iv1350.processSale.integration.ExternalSystems;
 import se.kth.iv1350.processSale.integration.Printer;
 import se.kth.iv1350.processSale.model.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * This class handles requests from view classes concerning payments. To make payments a <code>Sale</code> object needs
  * to be provided
@@ -14,6 +17,7 @@ public class PaymentController {
     private ExternalSystems extSys;
     private Money payment;
     private Sale sale;
+    private List<RevenueObserver> revenueObservers = new ArrayList<RevenueObserver>();
 
     /**
      * Creates new intance of <code>PaymentController</code>
@@ -26,6 +30,15 @@ public class PaymentController {
         this.printer = printer;
         this.extSys = extSys;
         payment = new Money();
+    }
+
+    /**
+     * Add an observer to the observer list to be ;notified when payments are made
+     *
+     * @param observer object to notify
+     */
+    public void addObserver(RevenueObserver observer){
+        revenueObservers.add(observer);
     }
 
     /**
@@ -92,7 +105,20 @@ public class PaymentController {
             updateCashRegister();
             updateExternalSystems();
             printReciept();
+            notifyObservers();
             sale = null;
+        }
+    }
+
+    /*
+     * Notify all observers of new payment
+     */
+    private void notifyObservers() {
+        Money revenue = new Money(payment);
+        Money change = calculateChange();
+        revenue.subtract(change);
+        for (RevenueObserver observer : revenueObservers){
+            observer.newPayment(revenue);
         }
     }
 
