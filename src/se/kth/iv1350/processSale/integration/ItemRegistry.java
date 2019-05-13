@@ -56,9 +56,9 @@ public class ItemRegistry {
             throw new ItemRegistryException("Failed to search registry", new SQLException());
         }
 
-        for (ItemDTO item : availableItems){
+        for (GroupedItem item : availableItems){
             if (item.getItemID().equals(searchedID)){
-                return item;
+                return item.getItem();
             }
         }
 

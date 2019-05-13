@@ -85,6 +85,9 @@ public class PaymentController {
         return change;
     }
 
+    public void addDiscount(){
+        sale = new SaleDiscount(sale);
+    }
     /**
      * Returns final state of the sale being handled
      *

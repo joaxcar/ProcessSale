@@ -2,8 +2,8 @@ package se.kth.iv1350.processSale.controller;
 
 import se.kth.iv1350.processSale.integration.ItemRegistry;
 import se.kth.iv1350.processSale.integration.ItemRegistryException;
+import se.kth.iv1350.processSale.model.BasicSale;
 import se.kth.iv1350.processSale.util.LogHandler;
-import se.kth.iv1350.processSale.util.Logger;
 import se.kth.iv1350.processSale.integration.NoItemFoundException;
 import se.kth.iv1350.processSale.model.ItemDTO;
 import se.kth.iv1350.processSale.model.Sale;
@@ -29,7 +29,7 @@ public class SaleController {
      * Initialize new sale
      */
     public void initializeSale() {
-        currentSale = new Sale();
+        currentSale = new BasicSale();
     }
 
     /**

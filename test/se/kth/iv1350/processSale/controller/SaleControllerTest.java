@@ -3,6 +3,7 @@ package se.kth.iv1350.processSale.controller;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import se.kth.iv1350.processSale.model.BasicSale;
 import se.kth.iv1350.processSale.util.FileLogger;
 import se.kth.iv1350.processSale.integration.ItemRegistry;
 import se.kth.iv1350.processSale.model.ItemDTO;
@@ -23,7 +24,7 @@ class SaleControllerTest {
         itemReg = new ItemRegistry();
         testController = new SaleController(itemReg);
         testController.initializeSale();
-        testSale = new Sale();
+        testSale = new BasicSale();
     }
 
     @AfterEach

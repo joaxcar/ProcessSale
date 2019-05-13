@@ -3,14 +3,15 @@ package se.kth.iv1350.processSale.model;
 /**
  * This class extends the <code>ItemDTO</code> to add the possibility of having a quantity related to an item
  */
-public class GroupedItem extends ItemDTO {
+public class GroupedItem {
+    private ItemDTO item;
     private int quantity;
 
     /**
      * Create empty instance of <code>GroupedItem</code>, sets quantity to 0
      */
     public GroupedItem(){
-        super();
+        item = new ItemDTO();
         quantity = 0;
     }
 
@@ -24,7 +25,7 @@ public class GroupedItem extends ItemDTO {
      * @param quantity Used for initial quantity
      */
     public GroupedItem(String name, Money price, String itemID, String type, VATRate vatRate, int quantity){
-        super( name,  price,  itemID,  type,  vatRate);
+        item = new ItemDTO( name,  price,  itemID,  type,  vatRate);
         this.quantity = quantity;
     }
 
@@ -35,7 +36,7 @@ public class GroupedItem extends ItemDTO {
      * @param quantity Used for initial quantity
      */
     public GroupedItem(ItemDTO item, int quantity){
-        super(item);
+        this.item = new ItemDTO(item);
         this.quantity = quantity;
     }
 
@@ -45,7 +46,7 @@ public class GroupedItem extends ItemDTO {
      * @param item Used for item
      */
     public GroupedItem(ItemDTO item){
-        super(item);
+        this.item = new ItemDTO(item);
         quantity = 1;
     }
 
@@ -81,6 +82,10 @@ public class GroupedItem extends ItemDTO {
         this.quantity = quantity;
     }
 
+
+    public String getItemID(){
+        return item.getItemID();
+    }
     /**
      * Get gouped item as a <code>String</code>
      *
@@ -88,7 +93,11 @@ public class GroupedItem extends ItemDTO {
      */
     @Override
     public String toString(){
-        String itemCount = new String(super.getName() + " : " + quantity);
+        String itemCount = new String(item.getName() + " : " + quantity);
         return itemCount;
+    }
+
+    public ItemDTO getItem() {
+        return new ItemDTO(item);
     }
 }

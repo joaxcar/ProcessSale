@@ -21,7 +21,7 @@ class SaleTest {
         item1 = new ItemDTO("GameBoy", new Money("2000"), "0001", "Console", new VATRate(25));
         item2 = new ItemDTO("Tetris", new Money("340"), "0002", "Game",new VATRate(12));
         item3 = new ItemDTO();
-        sale = new Sale();
+        sale = new BasicSale();
     }
 
     @AfterEach

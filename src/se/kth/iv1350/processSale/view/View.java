@@ -89,6 +89,8 @@ public class View {
         currentSale = paymentContr.getFinalSaleState();
         System.out.println("Total price (inc VAT): " + currentSale.getRunningTotalIncVAT() + "\n");
 
+        paymentContr.addDiscount();
+
         paymentContr.makePayment("23000");
 
         paymentContr.endPayment();
