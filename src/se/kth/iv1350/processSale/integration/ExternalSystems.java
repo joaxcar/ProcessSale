@@ -1,7 +1,9 @@
 package se.kth.iv1350.processSale.integration;
 
+import se.kth.iv1350.processSale.model.GroupedItem;
 import se.kth.iv1350.processSale.model.ReceiptDTO;
-import se.kth.iv1350.processSale.model.Sale;
+
+import java.util.List;
 
 
 /**
@@ -24,12 +26,11 @@ public class ExternalSystems {
 
     /**
      * Passes the arguments to the relevant external system to make entries
-     * @param sale <code>Sale</code> to log and pass to <code>ItemRegistry</code>
      * @param reciept <code>Receipt</code> to pass to <code>AccountingSystem</code>
      */
-    public void makeEntry(Sale sale, ReceiptDTO reciept) {
+    public void makeEntry(List<GroupedItem> itemList, ReceiptDTO reciept) {
         writeAccountingSystem(reciept);
-        updateItemRegistry(sale);
+        updateItemRegistry(itemList);
     }
 
     // Helper functions for passing arguments
@@ -38,7 +39,7 @@ public class ExternalSystems {
         accountingSys.makeEntry(reciept);
     }
 
-    private void updateItemRegistry(Sale sale){
-        itemReg.subtractFromInventory(sale.getGroupedItemList());
+    private void updateItemRegistry(List<GroupedItem> itemList){
+        itemReg.subtractFromInventory(itemList);
     }
 }

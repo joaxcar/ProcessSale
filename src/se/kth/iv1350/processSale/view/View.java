@@ -16,7 +16,7 @@ public class View {
     private SaleController saleContr;
     private PaymentController paymentContr;
 
-    SaleStateDTO currentSale;
+    private SaleStateDTO currentSale;
 
     /**
      * Create new instance, set given <code>SaleController</code> as sale controller
@@ -84,12 +84,13 @@ public class View {
         addItems(4,"0002");
         presentSaleInfo();
 
+        saleContr.addDiscount();
+
         saleContr.endSale(paymentContr);
 
         currentSale = paymentContr.getFinalSaleState();
         System.out.println("Total price (inc VAT): " + currentSale.getRunningTotalIncVAT() + "\n");
 
-        paymentContr.addDiscount();
 
         paymentContr.makePayment("23000");
 

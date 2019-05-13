@@ -18,12 +18,11 @@ public class ProcessSale {
      */
     public static void main(String[] args) {
         AccountingSystem accountingSys = new AccountingSystem();
-        CashRegister cashRegister = new CashRegister("Register 1");
         ItemRegistry itemReg = new ItemRegistry();
 
         ExternalSystems extSys = new ExternalSystems(itemReg, accountingSys);
         SaleController saleContr = new SaleController (itemReg);
-        PaymentController paymentContr = new PaymentController(cashRegister, extSys);
+        PaymentController paymentContr = new PaymentController(extSys);
         View view = new View(saleContr, paymentContr);
         view.testRun();
     }

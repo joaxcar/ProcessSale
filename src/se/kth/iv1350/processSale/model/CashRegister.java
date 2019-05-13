@@ -6,6 +6,8 @@ package se.kth.iv1350.processSale.model;
  */
 public class CashRegister {
 
+    private static final String REGISTER_ID = "register01";
+    private static final CashRegister CASH_REGISTER = new CashRegister(REGISTER_ID);
     private final String registerID;
     private final Money money;
 
@@ -14,9 +16,13 @@ public class CashRegister {
      *
      * @param registerID <code>String</code> to use as register ID
      */
-    public CashRegister(String registerID) {
+    private CashRegister(String registerID) {
         money = new Money();
         this.registerID = registerID;
+    }
+
+    public static CashRegister getCashRegister(){
+        return CASH_REGISTER;
     }
 
     /**

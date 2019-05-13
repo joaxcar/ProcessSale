@@ -12,21 +12,16 @@ import java.util.List;
  * to be provided
  */
 public class PaymentController {
-    private CashRegister cashRegister;
     private ExternalSystems extSys;
-    private Money payment;
-    private Sale sale;
     private List<RevenueObserver> revenueObservers = new ArrayList<RevenueObserver>();
+    private Payment payment;
 
     /**
      * Creates new intance of <code>PaymentController</code>
-     * @param cashRegister <code>CashRegister</code> to be used by the controller
      * @param extSys <code>ExternalSystems</code> to be used by the controller
      */
-    public PaymentController(CashRegister cashRegister, ExternalSystems extSys){
-        this.cashRegister = cashRegister;
+    public PaymentController(ExternalSystems extSys){
         this.extSys = extSys;
-        payment = new Money();
     }
 
     /**
@@ -43,27 +38,17 @@ public class PaymentController {
      *
      * @param sale <code>Sale</code> object to connect to <code>Payment</code>
      */
-    public void initializePayment(Sale sale) {
-        this.sale = sale;
+    void initializePayment(Sale sale) {
+        this.payment = new Payment(sale);
     }
 
     /**
      * Add amount to payment, converts from <code>String</code> to <code>Money</code>
      *
-     * @param payment Amount to be added
+     * @param amount Amount to be added
      */
-    public void makePayment(String payment) {
-        this.payment.add(new Money(payment));
-    }
-
-    /**
-     * Check if amount payed is greater or equals the total price of the <code>Sale</code>
-     *
-     * @return <code>true</code> if amount is greater or equal to total price
-     */
-    public boolean checkPaymentDone(){
-        boolean paymentDone = payment.greaterThan(new Money(sale.getRunningTotalIncVAT()));
-        return paymentDone;
+    public void makePayment(String amount) {
+        payment.add(new Money(amount));
     }
 
     /**
@@ -72,41 +57,31 @@ public class PaymentController {
      * @return <code>String</code> of amount
      */
     public String getChange(){
-        return calculateChange().toString();
+        Money change = payment.getChange();
+        return change.toString();
     }
 
-    /*
-     * Calculates change based on payment and total price
-     */
-    private Money calculateChange(){
-        Money totalPrice = sale.getRunningTotalIncVAT();
-        Money change = new Money(payment);
-        change.subtract(new Money(totalPrice));
-        return change;
-    }
 
-    public void addDiscount(){
-        sale = new SaleDiscount(sale);
-    }
+
     /**
      * Returns final state of the sale being handled
      *
      * @return <code>SaleStateDTO</code> from sale
      */
     public SaleStateDTO getFinalSaleState(){
-        return sale.getSaleState();
+        return payment.getSaleState();
     }
 
     /**
      * End current payment if payment is done. Update systems and print reciept
      */
     public void endPayment(){
-        if(checkPaymentDone()){
+        if(payment.checkPaymentDone()){
             updateCashRegister();
             updateExternalSystems();
             printReciept();
             notifyObservers();
-            sale = null;
+            payment = null;
         }
     }
 
@@ -114,8 +89,8 @@ public class PaymentController {
      * Notify all observers of new payment
      */
     private void notifyObservers() {
-        Money revenue = new Money(payment);
-        Money change = calculateChange();
+        Money revenue = payment.getPayedAmount();
+        Money change = payment.getChange();
         revenue.subtract(change);
         for (RevenueObserver observer : revenueObservers){
             observer.newPayment(revenue);
@@ -126,7 +101,7 @@ public class PaymentController {
      * private helper functions for connection with external systems
      */
     private void updateExternalSystems() {
-        extSys.makeEntry(sale, makeReciept());
+        extSys.makeEntry(payment.getGroupedItemList(), makeReciept());
     }
 
     private void printReciept(){
@@ -134,11 +109,12 @@ public class PaymentController {
     }
 
     private ReceiptDTO makeReciept(){
-        return new ReceiptDTO(sale, payment, calculateChange(), cashRegister);
+        return new ReceiptDTO(payment);
     }
 
     private void updateCashRegister(){
-        cashRegister.addCash(payment);
-        cashRegister.withdrawCash(calculateChange());
+        CashRegister cashReg = CashRegister.getCashRegister();
+        cashReg.addCash(payment.getPayedAmount());
+        cashReg.withdrawCash(payment.getChange());
     }
 }

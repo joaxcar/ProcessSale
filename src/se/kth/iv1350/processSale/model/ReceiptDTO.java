@@ -17,17 +17,14 @@ public class ReceiptDTO {
     /**
      * Create new instance of <code>Receipt</code>
      *
-     * @param sale sale containing list of items
-     * @param payment amount payed
-     * @param change change given to customer
-     * @param cashReg cash register used for payment
+     * @param payment payment to create receipt from
      */
-    public ReceiptDTO(Sale sale, Money payment, Money change, CashRegister cashReg) {
-        this.saleItems = sale.getGroupedItemList();
-        this.payment = payment;
-        this.change = change;
-        this.registerID = cashReg.getRegisterID();
-        this.price = sale.getRunningTotalIncVAT();
+    public ReceiptDTO(Payment payment) {
+        saleItems = payment.getGroupedItemList();
+        this.payment = payment.getPayedAmount();
+        change = payment.getChange();
+        registerID = CashRegister.getCashRegister().getRegisterID();
+        price = payment.getRunningTotalIncVAT();
         date = new Date();
     }
 

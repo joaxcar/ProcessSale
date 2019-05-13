@@ -2,12 +2,9 @@ package se.kth.iv1350.processSale.controller;
 
 import se.kth.iv1350.processSale.integration.ItemRegistry;
 import se.kth.iv1350.processSale.integration.ItemRegistryException;
-import se.kth.iv1350.processSale.model.BasicSale;
+import se.kth.iv1350.processSale.model.*;
 import se.kth.iv1350.processSale.util.LogHandler;
 import se.kth.iv1350.processSale.integration.NoItemFoundException;
-import se.kth.iv1350.processSale.model.ItemDTO;
-import se.kth.iv1350.processSale.model.Sale;
-import se.kth.iv1350.processSale.model.SaleStateDTO;
 
 /**
  * This class handles requests from view classes concerning sale objects
@@ -49,6 +46,10 @@ public class SaleController {
                 LogHandler.getLogHandler().logException(ire);
                 throw new OperationFailedException("Failed to add item to sale", ire);
             }
+    }
+
+    public void addDiscount(){
+        currentSale = new SaleDiscount(currentSale);
     }
 
     /**
