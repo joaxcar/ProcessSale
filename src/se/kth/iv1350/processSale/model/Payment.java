@@ -5,10 +5,12 @@ import java.util.List;
 public class Payment {
     private Sale sale;
     private Money payedAmount;
+    private List<RevenueObserver> revenueObservers;
 
-    public Payment(Sale sale) {
+    public Payment(Sale sale, List<RevenueObserver> observers) {
         this.sale = sale;
         this.payedAmount = new Money();
+        this.revenueObservers = observers;
     }
 
     public void add(Money amount){
@@ -53,5 +55,26 @@ public class Payment {
 
     public Money getRunningTotalIncVAT() {
         return sale.getRunningTotalIncVAT();
+    }
+
+    public void executePayment(){
+        if (checkPaymentDone()) {
+            CashRegister cashReg = CashRegister.getCashRegister();
+            cashReg.addCash(payedAmount);
+            cashReg.withdrawCash(calculateChange());
+            notifyObservers();
+        }
+    }
+
+    /*
+     * Notify all observers of new payment
+     */
+    private void notifyObservers() {
+        Money revenue = new Money(payedAmount);
+        Money change = calculateChange();
+        revenue.subtract(change);
+        for (RevenueObserver observer : revenueObservers){
+            observer.newPayment(revenue);
+        }
     }
 }

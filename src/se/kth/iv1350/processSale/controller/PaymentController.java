@@ -39,7 +39,7 @@ public class PaymentController {
      * @param sale <code>Sale</code> object to connect to <code>Payment</code>
      */
     void initializePayment(Sale sale) {
-        this.payment = new Payment(sale);
+        this.payment = new Payment(sale, revenueObservers);
     }
 
     /**
@@ -77,25 +77,14 @@ public class PaymentController {
      */
     public void endPayment(){
         if(payment.checkPaymentDone()){
-            updateCashRegister();
             updateExternalSystems();
             printReciept();
-            notifyObservers();
+            payment.executePayment();
             payment = null;
         }
     }
 
-    /*
-     * Notify all observers of new payment
-     */
-    private void notifyObservers() {
-        Money revenue = payment.getPayedAmount();
-        Money change = payment.getChange();
-        revenue.subtract(change);
-        for (RevenueObserver observer : revenueObservers){
-            observer.newPayment(revenue);
-        }
-    }
+
 
     /*
      * private helper functions for connection with external systems
@@ -112,9 +101,5 @@ public class PaymentController {
         return new ReceiptDTO(payment);
     }
 
-    private void updateCashRegister(){
-        CashRegister cashReg = CashRegister.getCashRegister();
-        cashReg.addCash(payment.getPayedAmount());
-        cashReg.withdrawCash(payment.getChange());
-    }
+
 }
