@@ -1,24 +1,32 @@
 package se.kth.iv1350.processSale.integration;
 
-import se.kth.iv1350.processSale.model.ReceiptDTO;
-
 /**
- * This class works as a placeholder for a real printer class
+ * A singelton that prints
  */
 public class Printer {
+
+    private static final Printer PRINTER = new Printer();
 
     /**
      * Create new instance of <code>Printer</code>
      */
-    public Printer(){}
+    private Printer(){}
+
+    /**
+     * Request the printer object
+     *
+     * @return the singelton printer
+     */
+    public static Printer getPrinter(){
+        return PRINTER;
+    }
 
     /**
      * Ask external printer to print receipt
      *
-     * @param receipt <code>Receipt</code> to print
+     * @param text <code>String</code> to print
      */
-    public void printReciept(ReceiptDTO receipt){
-        System.out.println("\nPrintout of receipt: ");
-        System.out.println(receipt.toString());
+    public void print(String text){
+        System.out.println(text);
     }
 }

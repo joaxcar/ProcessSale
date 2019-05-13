@@ -23,12 +23,11 @@ public class ProcessSale {
             AccountingSystem accountingSys = new AccountingSystem();
             CashRegister cashRegister = new CashRegister("Register 1");
             Log log = new Log();
-            Printer printer = new Printer();
             ItemRegistry itemReg = new ItemRegistry();
 
             ExternalSystems extSys = new ExternalSystems(itemReg, accountingSys);
             SaleController saleContr = new SaleController (itemReg, log);
-            PaymentController paymentContr = new PaymentController(cashRegister, extSys, printer);
+            PaymentController paymentContr = new PaymentController(cashRegister, extSys);
             View view = new View(saleContr, paymentContr);
             view.testRun();
         }

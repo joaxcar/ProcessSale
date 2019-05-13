@@ -13,7 +13,6 @@ import java.util.List;
  */
 public class PaymentController {
     private CashRegister cashRegister;
-    private Printer printer;
     private ExternalSystems extSys;
     private Money payment;
     private Sale sale;
@@ -23,11 +22,9 @@ public class PaymentController {
      * Creates new intance of <code>PaymentController</code>
      * @param cashRegister <code>CashRegister</code> to be used by the controller
      * @param extSys <code>ExternalSystems</code> to be used by the controller
-     * @param printer <code>Printer</code> to be used by the controller
      */
-    public PaymentController(CashRegister cashRegister, ExternalSystems extSys, Printer printer){
+    public PaymentController(CashRegister cashRegister, ExternalSystems extSys){
         this.cashRegister = cashRegister;
-        this.printer = printer;
         this.extSys = extSys;
         payment = new Money();
     }
@@ -122,18 +119,17 @@ public class PaymentController {
         }
     }
 
-
     /*
      * private helper functions for connection with external systems
      */
-
     private void updateExternalSystems() {
         extSys.makeEntry(sale, makeReciept());
     }
 
     private void printReciept(){
-        printer.printReciept(makeReciept());
+        Printer.getPrinter().print(makeReciept().toString());
     }
+
     private ReceiptDTO makeReciept(){
         return new ReceiptDTO(sale, payment, calculateChange(), cashRegister);
     }
