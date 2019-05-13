@@ -3,8 +3,9 @@ package se.kth.iv1350.processSale.controller;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import se.kth.iv1350.processSale.integration.FileLogger;
 import se.kth.iv1350.processSale.integration.ItemRegistry;
-import se.kth.iv1350.processSale.integration.Log;
+import se.kth.iv1350.processSale.integration.Logger;
 import se.kth.iv1350.processSale.model.ItemDTO;
 import se.kth.iv1350.processSale.model.Sale;
 import se.kth.iv1350.processSale.model.SaleStateDTO;
@@ -17,13 +18,13 @@ class SaleControllerTest {
 
     ItemRegistry itemReg;
     SaleController testController;
-    Log log;
+    Logger log;
     Sale testSale;
 
     @BeforeEach
     void setup() throws IOException {
         itemReg = new ItemRegistry();
-        log = new Log();
+        log = new FileLogger();
         testController = new SaleController(itemReg, log);
         testController.initializeSale();
         testSale = new Sale();

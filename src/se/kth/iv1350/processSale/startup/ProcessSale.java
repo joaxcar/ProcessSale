@@ -22,7 +22,7 @@ public class ProcessSale {
         try{
             AccountingSystem accountingSys = new AccountingSystem();
             CashRegister cashRegister = new CashRegister("Register 1");
-            Log log = new Log();
+            Logger log = new FileLogger();
             ItemRegistry itemReg = new ItemRegistry();
 
             ExternalSystems extSys = new ExternalSystems(itemReg, accountingSys);

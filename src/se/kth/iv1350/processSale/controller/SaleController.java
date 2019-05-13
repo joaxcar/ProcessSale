@@ -1,7 +1,7 @@
 package se.kth.iv1350.processSale.controller;
 
 import se.kth.iv1350.processSale.integration.ItemRegistry;
-import se.kth.iv1350.processSale.integration.Log;
+import se.kth.iv1350.processSale.integration.Logger;
 import se.kth.iv1350.processSale.integration.NoItemFoundException;
 import se.kth.iv1350.processSale.model.ItemDTO;
 import se.kth.iv1350.processSale.model.Sale;
@@ -15,7 +15,7 @@ import java.sql.SQLException;
  */
 public class SaleController {
     private ItemRegistry itemReg;
-    private Log log;
+    private Logger log;
     private Sale currentSale;
 
     /**
@@ -23,7 +23,7 @@ public class SaleController {
      *
      * @param itemReg <code>ItemRegistry</code> to be used by controller
      */
-    public SaleController(ItemRegistry itemReg, Log log) {
+    public SaleController(ItemRegistry itemReg, Logger log) {
        this.itemReg = itemReg;
        this.log = log;
     }
@@ -49,13 +49,7 @@ public class SaleController {
                 currentSale.addItem(newItem, quantity);
             }
             catch (SQLException sqle){
-                try {
-                    log.logEntry(sqle.getMessage());
-                }
-                catch (IOException ioe){
-                    System.out.println("Failed to write to log");
-                    System.out.println(ioe.getStackTrace());
-                }
+                log.logException(sqle);
                 throw new OperationFailedException("Failed to add item to sale", sqle);
             }
     }
