@@ -3,6 +3,7 @@ package se.kth.iv1350.processSale.integration;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import se.kth.iv1350.processSale.util.FileLogger;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

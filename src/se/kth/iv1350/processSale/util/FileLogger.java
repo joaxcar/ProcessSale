@@ -1,4 +1,4 @@
-package se.kth.iv1350.processSale.integration;
+package se.kth.iv1350.processSale.util;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
@@ -50,11 +50,9 @@ public class FileLogger implements Logger {
     private void logEntry(String type, String message){
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(logFile, true));
-            Date timeStamp = new Date();
-            String dateString = formater.format(timeStamp.getTime());
-
             StringBuilder logEntry = new StringBuilder();
-            logEntry.append(dateString);
+
+            logEntry.append(createTimeStamp());
             logEntry.append(": ");
             logEntry.append(type + " ");
             logEntry.append(message);
@@ -69,5 +67,10 @@ public class FileLogger implements Logger {
             System.out.println(message);
             System.out.println(ioe.getStackTrace());
         }
+    }
+    private String createTimeStamp(){
+        Date timeStamp = new Date();
+        String dateString = formater.format(timeStamp.getTime());
+        return dateString;
     }
 }

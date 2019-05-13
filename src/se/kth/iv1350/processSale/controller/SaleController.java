@@ -2,20 +2,18 @@ package se.kth.iv1350.processSale.controller;
 
 import se.kth.iv1350.processSale.integration.ItemRegistry;
 import se.kth.iv1350.processSale.integration.ItemRegistryException;
-import se.kth.iv1350.processSale.integration.Logger;
+import se.kth.iv1350.processSale.util.LogHandler;
+import se.kth.iv1350.processSale.util.Logger;
 import se.kth.iv1350.processSale.integration.NoItemFoundException;
 import se.kth.iv1350.processSale.model.ItemDTO;
 import se.kth.iv1350.processSale.model.Sale;
 import se.kth.iv1350.processSale.model.SaleStateDTO;
-
-import java.sql.SQLException;
 
 /**
  * This class handles requests from view classes concerning sale objects
  */
 public class SaleController {
     private ItemRegistry itemReg;
-    private Logger log;
     private Sale currentSale;
 
     /**
@@ -23,9 +21,8 @@ public class SaleController {
      *
      * @param itemReg <code>ItemRegistry</code> to be used by controller
      */
-    public SaleController(ItemRegistry itemReg, Logger log) {
+    public SaleController(ItemRegistry itemReg) {
        this.itemReg = itemReg;
-       this.log = log;
     }
 
     /**
@@ -49,7 +46,7 @@ public class SaleController {
                 currentSale.addItem(newItem, quantity);
             }
             catch (ItemRegistryException ire){
-                log.logException(ire);
+                LogHandler.getLogHandler().logException(ire);
                 throw new OperationFailedException("Failed to add item to sale", ire);
             }
     }
