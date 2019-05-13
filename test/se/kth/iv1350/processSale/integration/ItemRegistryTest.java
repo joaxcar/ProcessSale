@@ -18,7 +18,7 @@ class ItemRegistryTest {
     }
 
     @Test
-    void searchItem() throws NoItemFoundException, SQLException {
+    void searchItem() throws NoItemFoundException, ItemRegistryException {
 
         ItemDTO item = new ItemDTO("GameBoy", new Money("2000"), "0001", "Console", new VATRate(25));
         ItemDTO foundItem = itemRegistry.searchItem("0001");
@@ -27,7 +27,7 @@ class ItemRegistryTest {
     }
 
     @Test
-    void testWrongItemIDinSearch() throws SQLException{
+    void testWrongItemIDinSearch() throws ItemRegistryException{
         String testValue = "doesNotExist";
         try{
            itemRegistry.searchItem(testValue);
@@ -41,12 +41,12 @@ class ItemRegistryTest {
     @Test
     void testDatabaseError() throws NoItemFoundException{
         String testValue = "0000";
-        String expMessage = "SQL error";
+        String expMessage = "Failed to search registry";
         try{
             itemRegistry.searchItem(testValue);
         }
-        catch (SQLException sqle){
-            assertEquals(sqle.getMessage(), expMessage, "Wrong message after SQLException");
+        catch (ItemRegistryException ire){
+            assertEquals(ire.getMessage(), expMessage, "Wrong message after ItemRegistryExcepttion");
         }
     }
 

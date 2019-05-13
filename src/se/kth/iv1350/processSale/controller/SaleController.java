@@ -1,13 +1,13 @@
 package se.kth.iv1350.processSale.controller;
 
 import se.kth.iv1350.processSale.integration.ItemRegistry;
+import se.kth.iv1350.processSale.integration.ItemRegistryException;
 import se.kth.iv1350.processSale.integration.Logger;
 import se.kth.iv1350.processSale.integration.NoItemFoundException;
 import se.kth.iv1350.processSale.model.ItemDTO;
 import se.kth.iv1350.processSale.model.Sale;
 import se.kth.iv1350.processSale.model.SaleStateDTO;
 
-import java.io.IOException;
 import java.sql.SQLException;
 
 /**
@@ -48,9 +48,9 @@ public class SaleController {
                 ItemDTO newItem = itemReg.searchItem(itemID);
                 currentSale.addItem(newItem, quantity);
             }
-            catch (SQLException sqle){
-                log.logException(sqle);
-                throw new OperationFailedException("Failed to add item to sale", sqle);
+            catch (ItemRegistryException ire){
+                log.logException(ire);
+                throw new OperationFailedException("Failed to add item to sale", ire);
             }
     }
 
