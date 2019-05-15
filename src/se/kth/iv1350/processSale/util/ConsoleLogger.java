@@ -1,15 +1,17 @@
 package se.kth.iv1350.processSale.util;
 
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * This class handles logging to the console
+ */
 public class ConsoleLogger implements Logger {
 
     SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
 
     /**
-     * Log information from sale in external log system
+     * Log message
      *
      * @param message message to log
      */
@@ -19,7 +21,7 @@ public class ConsoleLogger implements Logger {
     }
 
     /**
-     * Log information from sale in external log system
+     * Log information from an exception
      *
      * @param ex exception to log
      */

@@ -25,7 +25,7 @@ public class FileLogger implements Logger {
     }
 
     /**
-     * Log information from sale in external log system
+     * Log message
      *
      * @param message message to log
      */
@@ -35,7 +35,7 @@ public class FileLogger implements Logger {
     }
 
     /**
-     * Log information from sale in external log system
+     * Log information from <code>Exception</code>
      *
      * @param ex exception to log
      */

@@ -24,7 +24,7 @@ public class ReceiptDTO {
         this.payment = payment.getPayedAmount();
         change = payment.getChange();
         registerID = CashRegister.getCashRegister().getRegisterID();
-        price = payment.getRunningTotalIncVAT();
+        price = payment.totalPrice();
         date = new Date();
     }
 

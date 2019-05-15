@@ -8,7 +8,7 @@ public interface RevenueObserver {
     /**
      * Invoked when a payment has been made
      *
-     * @param revenue payment minus change
+     * @param revenue revenue from sale
      */
     void newPayment(Money revenue);
 }

@@ -1,7 +1,7 @@
 package se.kth.iv1350.processSale.model;
 
 /**
- * This class extends the <code>ItemDTO</code> to add the possibility of having a quantity related to an item
+ * This class stores an <code>ItemDTO</code> and a quantity related to an item
  */
 public class GroupedItem {
     private ItemDTO item;
@@ -97,6 +97,11 @@ public class GroupedItem {
         return itemCount;
     }
 
+    /**
+     * Get item related to quantity
+     *
+     * @return <code>ItemDTO</code> contained in <code>GroupedItem</code>
+     */
     public ItemDTO getItem() {
         return new ItemDTO(item);
     }

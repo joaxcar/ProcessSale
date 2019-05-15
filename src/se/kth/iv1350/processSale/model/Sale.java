@@ -3,7 +3,7 @@ package se.kth.iv1350.processSale.model;
 import java.util.List;
 
 /**
- * This class keeps a list of ItemDTOs representing a sale
+ * Interface defining a sale
  */
 public interface Sale {
     /**
