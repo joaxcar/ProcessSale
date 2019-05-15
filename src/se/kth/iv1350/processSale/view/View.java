@@ -36,7 +36,7 @@ public class View {
      */
     public void testRun(){
         saleContr.initializeSale();
-        currentSale = saleContr.getSaleState();
+
 
         presentSaleInfo();
 
@@ -58,7 +58,11 @@ public class View {
         addItems(4,"0000");
         presentSaleInfo();
 
-        saleContr.endSale(paymentContr);
+        try {
+            saleContr.endSale(paymentContr);
+        }catch (OperationFailedException ex){
+            errorMsgHandler.printErrorMessage(ex.getMessage());
+        }
 
         currentSale = paymentContr.getFinalSaleState();
         System.out.println("Total price (inc VAT): " + currentSale.getRunningTotalIncVAT() + "\n");
@@ -68,8 +72,6 @@ public class View {
         paymentContr.endPayment();
 
         saleContr.initializeSale();
-        currentSale = saleContr.getSaleState();
-
         presentSaleInfo();
 
         addItems(1,"0001");
@@ -84,9 +86,16 @@ public class View {
         addItems(4,"0002");
         presentSaleInfo();
 
-        saleContr.addDiscount();
-
-        saleContr.endSale(paymentContr);
+        try {
+            saleContr.addDiscount();
+        }catch (OperationFailedException ex){
+            errorMsgHandler.printErrorMessage(ex.getMessage());
+        }
+        try {
+            saleContr.endSale(paymentContr);
+        }catch (OperationFailedException ex){
+            errorMsgHandler.printErrorMessage(ex.getMessage());
+        }
 
         currentSale = paymentContr.getFinalSaleState();
         System.out.println("Total price (inc VAT): " + currentSale.getRunningTotalIncVAT() + "\n");
@@ -117,7 +126,11 @@ public class View {
      * Retrieves and prints sale info to terminal
      */
     private void presentSaleInfo(){
-        currentSale = saleContr.getSaleState();
+        try{
+            currentSale = saleContr.getSaleState();
+        } catch (OperationFailedException ex){
+            errorMsgHandler.printErrorMessage(ex.getMessage());
+        }
         ItemDTO lastAddedItem = currentSale.getLastAddedItem();
         System.out.println("Running total (inc VAT): " + currentSale.getRunningTotalIncVAT());
         System.out.println("Last added item name: " + lastAddedItem.getName());

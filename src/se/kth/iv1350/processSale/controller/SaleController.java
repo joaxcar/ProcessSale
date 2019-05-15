@@ -38,6 +38,8 @@ public class SaleController {
      * @throws NoItemFoundException when search in item registry fails
      */
     public void addItemsToSale(int quantity, String itemID) throws NoItemFoundException, OperationFailedException {
+            checkOperationPermitted();
+
             try {
                 ItemDTO newItem = itemReg.searchItem(itemID);
                 currentSale.addItem(newItem, quantity);
@@ -48,7 +50,9 @@ public class SaleController {
             }
     }
 
-    public void addDiscount(){
+    public void addDiscount() throws OperationFailedException{
+        checkOperationPermitted();
+
         currentSale = new SaleDiscount(currentSale);
     }
 
@@ -57,7 +61,9 @@ public class SaleController {
      *
      * @param paymentContr <code>PaymentController</code> to handle payment
      */
-    public void endSale(PaymentController paymentContr) {
+    public void endSale(PaymentController paymentContr) throws OperationFailedException{
+        checkOperationPermitted();
+
         paymentContr.initializePayment(currentSale);
         currentSale = null;
     }
@@ -67,7 +73,15 @@ public class SaleController {
      *
      * @return sale state from current sale
      */
-    public SaleStateDTO getSaleState(){
+    public SaleStateDTO getSaleState() throws OperationFailedException {
+        checkOperationPermitted();
+
         return currentSale.getSaleState();
+    }
+
+    private void checkOperationPermitted() throws  OperationFailedException{
+        if(currentSale == null){
+            throw new OperationFailedException("No active sale, create new sale", new NullPointerException());
+        }
     }
 }

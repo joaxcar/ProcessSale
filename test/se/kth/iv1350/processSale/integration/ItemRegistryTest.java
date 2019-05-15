@@ -47,13 +47,4 @@ class ItemRegistryTest {
         }
     }
 
-    //@Test
-    void updateInventory() {
-    }
-
-
-
-    @Test
-    void subtractFromInventory() {
-    }
 }
