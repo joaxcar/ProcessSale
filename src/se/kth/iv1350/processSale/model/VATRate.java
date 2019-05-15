@@ -22,7 +22,8 @@ public final class VATRate {
 
     /**
      * Create new instance of <code>VATRate</code>, set rate to given or highest
-     * @param vatRate
+     *
+     * @param vatRate percentage value of VAT rate
      */
     public VATRate (int vatRate){
         if(vatRate == 25){

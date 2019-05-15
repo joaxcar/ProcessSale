@@ -50,14 +50,12 @@ public class FileLogger implements Logger {
     private void logEntry(String type, String message){
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(logFile, true));
-            StringBuilder logEntry = new StringBuilder();
 
-            logEntry.append(createTimeStamp());
-            logEntry.append(": ");
-            logEntry.append(type + " ");
-            logEntry.append(message);
-
-            writer.write(logEntry.toString());
+            String logEntry = createTimeStamp() +
+                    ": " +
+                    type + " " +
+                    message;
+            writer.write(logEntry);
             writer.newLine();
             writer.flush();
             writer.close();
@@ -65,7 +63,7 @@ public class FileLogger implements Logger {
         catch (IOException ioe){
             System.out.println("Failed to log exception: ");
             System.out.println(message);
-            System.out.println(ioe.getStackTrace());
+            ioe.printStackTrace();
         }
     }
     private String createTimeStamp(){

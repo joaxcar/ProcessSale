@@ -93,7 +93,7 @@ public class GroupedItem {
      */
     @Override
     public String toString(){
-        String itemCount = new String(item.getName() + " : " + quantity);
+        String itemCount = item.getName() + " : " + quantity;
         return itemCount;
     }
 

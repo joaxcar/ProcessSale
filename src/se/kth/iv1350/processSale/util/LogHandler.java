@@ -19,7 +19,7 @@ public class LogHandler implements Logger{
         }
         catch (IOException ioe){
             System.out.println("Failed to initiate logfile, logging to console");
-            System.out.println(ioe.getStackTrace());
+            ioe.printStackTrace();
             logger = new ConsoleLogger();
         }
     }

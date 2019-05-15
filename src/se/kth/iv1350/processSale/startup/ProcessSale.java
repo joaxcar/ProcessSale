@@ -3,7 +3,6 @@ package se.kth.iv1350.processSale.startup;
 import se.kth.iv1350.processSale.controller.PaymentController;
 import se.kth.iv1350.processSale.controller.SaleController;
 import se.kth.iv1350.processSale.integration.*;
-import se.kth.iv1350.processSale.model.CashRegister;
 import se.kth.iv1350.processSale.view.View;
 
 /**

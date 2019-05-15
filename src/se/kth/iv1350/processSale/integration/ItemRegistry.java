@@ -48,11 +48,11 @@ public class ItemRegistry {
      * @param searchedID String to match against <code>ItemDTO</code> ID
      * @return matching <code>ItemDTO</code> if found otherwise null
      * @throws NoItemFoundException if no item is found
-     * @throws SQLException if database error occurs
+     * @throws ItemRegistryException if database error occurs
      */
     public ItemDTO searchItem(String searchedID) throws NoItemFoundException, ItemRegistryException {
         // This is part of seminar 4, hardcoded failure to simulate database error
-        if (searchedID == "0000"){
+        if (searchedID.equals("0000")){
             throw new ItemRegistryException("Failed to search registry", new SQLException());
         }
 

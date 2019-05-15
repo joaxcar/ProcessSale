@@ -5,8 +5,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import se.kth.iv1350.processSale.model.Money;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class TotalRevenueViewTest {
 
     TotalRevenueView view;

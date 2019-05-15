@@ -8,7 +8,7 @@ import java.util.Date;
  */
 public class ConsoleLogger implements Logger {
 
-    SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
     /**
      * Log message
@@ -46,7 +46,7 @@ public class ConsoleLogger implements Logger {
 
     private String createTimeStamp(){
         Date timeStamp = new Date();
-        String dateString = formater.format(timeStamp.getTime());
+        String dateString = formatter.format(timeStamp.getTime());
         return dateString;
     }
 }
